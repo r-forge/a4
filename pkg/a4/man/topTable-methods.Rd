@@ -7,6 +7,7 @@
 \alias{topTable,pamClass-method}
 \alias{topTable,rfClass-method}
 \alias{topTable,tTest-method}
+\alias{topTable,fTest-method}
 \title{Methods for topTable}
 \description{
   Methods for topTable. topTable extracts the top n most important features
@@ -40,6 +41,9 @@ tTest
 
 \item{fit = "tTest", n = "numeric"}{tTest objects are produced by \code{tTest}}
 
+fTest
+
+\item{fit = "fTest", n = "numeric"}{fTest objects are produced by \code{fTest}}
 
 }
 }

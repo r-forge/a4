@@ -23,8 +23,8 @@ ROCcurve(object, groups, probesetId = NULL, geneSymbol = NULL, main = NULL, prob
     (used for the default title of the plot)}
   \item{\dots}{Possibility to add extra plot options. See \code{\link{par}}}
 }
-\references{Some explanation about ROC can be found on \href{http://en.wikipedia.org/wiki/ROC_curve}
- and href{http://www.anaesthetist.com/mnm/stats/roc/Findex.htm}. The latter has
+\references{Some explanation about ROC can be found on \url{http://en.wikipedia.org/wiki/ROC_curve}
+ and \url{http://www.anaesthetist.com/mnm/stats/roc/Findex.htm}. The latter has
  at the bottom a nice interactive tool to scroll the cut-off and to see how it affects the FP/TP table and the ROC curve. 
 }
 \author{Willem Talloen}

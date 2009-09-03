@@ -18,8 +18,12 @@ addGeneInfo(eset, annotationLibrary = NULL)
 }
 \details{
   Slots of featureData(a4ALL) are
-  \item{Entrez ID}{Entrez IDs for the genes}
-  % TODO: complete \item{}{}
+  \itemize{
+    \item \kbd{Entrez ID}~: Entrez ID as retrieved from annotation package
+    \item \kbd{Ensembl ID}~: Ensembl ID as retrieved from annotation package
+    \item \kbd{Gene Symbol}~: Gene symbol as retrieved from annotation package
+    \item \kbd{Description}~: Description as retrieved from annotation package 
+  }
 }
 \value{
   a new ExpressionSet object with the additional information stored as feature data

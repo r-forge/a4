@@ -30,6 +30,6 @@ No methods defined with class "ExpressionSetWithComputation" in the signature.
 }
 \author{Tobias Verbeke}
 \seealso{
-	\code{\link[Biobase]{ExpressionSet}}, \code{\link{computeDEStats}}
+	\code{\link[Biobase]{ExpressionSet}}, \code{\link{computeLogRatio}}
 }
 \keyword{classes}

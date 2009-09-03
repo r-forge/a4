@@ -15,7 +15,7 @@ importFrom(limma, eBayes)
 #--------
 
 export(addGeneInfo, probe2gene, a4palette, filterVarInt, tTest, limma2Groups, propDEgenes, histPvalue, histpvalueplotter, propdegenescalculation,
-       volcanoPlot, volcanoplotter, lassoClass, lassoReg, pamClass, rfClass, ROCcurve, logReg, ProbabilitiesPlot, 
+       volcanoPlot, volcanoplotter, lassoClass, lassoReg, pamClass, rfClass, ROCcurve, logReg, probabilitiesPlot, 
        plot1gene, plotCombination2genes, boxPlot, plotComb2Samples, plotCombMultSamples, profilesPlot,
        addQuantilesColors, combineTwoExpressionSet, computeLogRatio,
        plotLogRatio, createExpressionSet, replicates)

@@ -1,6 +1,5 @@
 \name{logReg}
 \alias{logReg}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Logistic regression for predicting the probability to belong to a certain class
  in binary classification problems.}
 \description{
@@ -10,7 +9,6 @@ Logistic regression for predicting the probability to belong to a certain class
 \usage{
 logReg(object, groups, probesetId = NULL, geneSymbol = NULL, main = NULL, probe2gene = TRUE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{object}{ExpressionSet object for the experiment}
   \item{groups}{String containing the name of the grouping variable. This should be a 
@@ -46,11 +44,6 @@ ALL <- addGeneInfo(ALL)
 ALL$BTtype <- as.factor(substr(ALL$BT,0,1))
 
 logRegRes <- logReg(geneSymbol = "HLA-DPB1", object = ALL, groups = "BTtype")
-ProbabilitiesPlot(proportions = logRegRes$fit, classVar = logRegRes$y,
+probabilitiesPlot(proportions = logRegRes$fit, classVar = logRegRes$y,
 		sampleNames = rownames(logRegRes), main = 'Probability of being a T-cell type ALL')
 }
-
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-%\keyword{ ~kwd1 }
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

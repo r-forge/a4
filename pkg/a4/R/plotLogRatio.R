@@ -51,10 +51,7 @@ plotLogRatio <- function(
 	
 	
 	stopifnot(is(e,"ExpressionSet") | is(e,"ExpressionSetWithComputation"))
-	stopifnot(require(grid))
-	stopifnot(require(annotate))
 	
-#  browser()
 	if(!is.null(orderBy$cols)){
 		if(!orderBy$cols %in% colnames(pData(e))){
 			stop( "The column name by which the data has to be sorted cannot be found in the phenodata!\n")

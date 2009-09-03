@@ -12,7 +12,8 @@ plotLogRatio(e, reference, within = NULL, across = NULL, nReplicatesVar = 3,
    "#7570B3", "#E7298A", "#66A61E", "#E6AB02", "#A6761D", "#666666"), colorsUseMeanQuantiles = FALSE,
     colorsMeanQuantilesPalette = c("orange", "red", "darkred"), colorsBarsMatrix = NULL,
      colorsGenesNames = c("black"), main = paste("log2 ratio's"), shortvarnames = NULL,
-      longvarnames = NULL, gene.length = 50, gene.fontsize = 6, mx = 1.5,
+      longvarnames = NULL, gene.length = 50, gene.fontsize = 6, main.fontsize = 9, 
+      columnhead.fontsize = 8, mx = 1.5,
        exp.width = 1.8, exp.height = 0.2, log2l.show = TRUE, log4l.show = FALSE, quantiles.show = FALSE,
         quantiles.compute = c(0.9), error.show = TRUE, view.psid = FALSE,
          errorLabel = "Error bars show the pooled standard deviation", 
@@ -45,7 +46,7 @@ plotLogRatio(e, reference, within = NULL, across = NULL, nReplicatesVar = 3,
   \item{colorsGenesNames}{Vector of colors to be used for gene names; will be recycled 
     if necessary; colors are provided for genes in data order and thus are possibly 
     reordered according to orderBy}
-  \item{main}{ Main title}
+  \item{main}{Main title}
   \item{shortvarnames}{Vector or pData column to be used to display in graph columns. If NULL, those names 
     will be used from the coded names added to pData during computations (list of columns values pasted with a dot). Warning: shortvarnames must be defined in the order columns are present in the ExpressionSet object so that they will be reordered if one asks to order columns.}
   \item{longvarnames}{ pData column to be used in SVG tooltip title. If NULL, shortvarnames will be used.Same warning than shortvarnames about ordering. }
@@ -66,11 +67,13 @@ plotLogRatio(e, reference, within = NULL, across = NULL, nReplicatesVar = 3,
     (only for those columns for which they are available) }
   \item{view.psid}{ A logical value. If 'TRUE', the genes psid is displayed on the gene names }
   \item{errorLabel}{ A character vector describing the error bars, printed at the bottom of the figure}
-  \item{closeX11}{ If \code{device} is SVG, do we close the required X11 device at the end?}
+  \item{closeX11}{If \code{device} is SVG, do we close the required X11 device at the end?}
   \item{openFile}{ A logical value. If 'TRUE', the produced output file is opened }
   \item{tooltipvalues}{ If device is SVG, one can choose to display each bar separately, with data values as tooltips. 
     Note however that each bar will be considered as a distinct object instead of a column, which will takes much 
     more time to create the graph and produces a much bigger SVG file}
+  \item{probe2gene}{Boolean indicating whether the probeset should be translated to a gene symbol
+    (used for the default title of the plot)}
   \item{\dots}{ \code{\dots} }
 }
 \section{Ordering}{

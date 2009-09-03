@@ -65,7 +65,7 @@ logReg <- function(object, groups, probesetId = NULL,
 	#-----------
 }
 
-ProbabilitiesPlot <- function(proportions,
+probabilitiesPlot <- function(proportions,
 		classVar,
 		sampleNames,
 		plot = TRUE,
