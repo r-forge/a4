@@ -11,6 +11,9 @@ spectralMap(object, groups, ...)
   \item{object}{object of class ExpressionSet}
   \item{groups}{string indicating the name of the column in the phenoData that
      defines the groups}
+  \item{addLegend}{Boolean indicating whether a legend for the colors of the dots should be added.}
+  \item{legendPos}{Specify where the legend should be placed. Typically either \code{topright},
+   \code{bottomright}, \code{topleft} (the default) or \code{bottomleft}}
   \item{\dots}{further arguments to be passed to the methods}
 }
 \value{
@@ -23,6 +26,9 @@ spectralMap(object, groups, ...)
   Lewi, P.J. (2003). Graphical exploration of gene expression data: a
   comparative study of three multivariate methods. \emph{Biometrics}
   \bold{59}, 1131-1140.
+  
+  Goehlmann, H. and W. Talloen (2009). Gene Expression Studies Using Affymetrix
+    Microarrays, Chapman \& Hall/CRC, pp. 148 - 153.
 }
 \author{Tobias Verbeke}
 \seealso{\code{\link{spectralMap-methods}}, \code{\link[mpm]{plot.mpm}}}
@@ -31,9 +37,7 @@ spectralMap(object, groups, ...)
 data(ALL, package = "ALL")
 ALL <- addGeneInfo(ALL)
 
-spectralMap(object = ALL, groups = "BT")
-legend('bottomright', legend=levels(pData(ALL)$BT),
-		text.col= a4palette(nlevels(pData(ALL)$BT)), bty='n')
+spectralMap(object = ALL, groups = "BT", legendPos = 'bottomright')
 
 spectralMap(object = ALL, groups = "BT",
 	plot.mpm.args = list(label.tol = 10, rot = c(-1, 1), sub = "", lab.size = 0.65,

@@ -38,7 +38,7 @@ setMethod("spectralMap",
                         a4palette(length(unique(pData(object)[, groups])))), # colors for the groups 
              col.size = 2,
              do.smoothScatter = TRUE),
-          probe2gene = TRUE){
+          probe2gene = TRUE, addLegend = TRUE, legendPos = "topleft", ...){
           expressionData <- exprs(object)
           chip <- annotation(object)
           chipAnnotationPkg <- paste(chip, "db", sep = ".")
@@ -87,6 +87,15 @@ setMethod("spectralMap",
 								You may want to set the argument 'probe2gene' to FALSE (the default is TRUE)")
 			
           }
-          mpmPlot <- do.call("plot.mpm", plot.mpm.args)
+		  
+		  mpmPlot <- do.call("plot.mpm", plot.mpm.args)
+		  
+		  # add legend
+		  if (addLegend){
+			  legend(legendPos, bty='n', 
+					  legend = unique(pData(object)[, groups]),
+					  text.col = a4palette(length(unique(pData(object)[, groups]))),
+					  cex=1)
+		  }
           invisible(mpmPlot)
 })
