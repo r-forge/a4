@@ -37,13 +37,18 @@ A data.frame object with three columns and rownames
 \references{ ~put references to the literature/web site here ~ }
 \author{Willem Talloen}
 
-\seealso{\code{\link{ROCcurve}}}
+\seealso{\code{\link{ROCcurve}},\code{\link{probabilitiesPlot}}}
 \examples{
 data(ALL, package = "ALL")
 ALL <- addGeneInfo(ALL)
 ALL$BTtype <- as.factor(substr(ALL$BT,0,1))
 
 logRegRes <- logReg(geneSymbol = "HLA-DPB1", object = ALL, groups = "BTtype")
+
+# scoresplot
 probabilitiesPlot(proportions = logRegRes$fit, classVar = logRegRes$y,
+		sampleNames = rownames(logRegRes), main = 'Probability of being a T-cell type ALL')
+# barplot
+probabilitiesPlot(proportions = logRegRes$fit, classVar = logRegRes$y, barPlot=TRUE,
 		sampleNames = rownames(logRegRes), main = 'Probability of being a T-cell type ALL')
 }

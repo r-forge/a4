@@ -15,7 +15,8 @@ lassoClass(object, groups)
 \value{
   object of class \code{glmnet}
 }
-% \references{}
+\references{Goehlmann, H. and W. Talloen (2009). Gene Expression Studies Using Affymetrix
+    Microarrays, Chapman \& Hall/CRC, pp. 183, 205 and 212.}
 \author{Willem Talloen}
 \seealso{\code{\link[glmnet]{glmnet}}}
 \examples{

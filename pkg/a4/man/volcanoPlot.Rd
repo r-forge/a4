@@ -26,6 +26,9 @@ volcanoPlot(x, y, pointLabels, ...)
 \value{
   The volcano plot is drawn to the current device.
 }
+\references{Goehlmann, H. and W. Talloen (2009). Gene Expression Studies Using Affymetrix
+    Microarrays, Chapman \& Hall/CRC, pp. 148 - 153.
+}
 \author{Tobias Verbeke, based on code by Willem Talloen}
 \examples{
 data(ALL, package = "ALL")

@@ -22,7 +22,8 @@ lassoReg(object, covariate)
 \value{
   object of class \code{glmnet}
 }
-\references{ ~put references to the literature/web site here ~ }
+\references{Goehlmann, H. and W. Talloen (2009). Gene Expression Studies Using Affymetrix
+    Microarrays, Chapman \& Hall/CRC, pp. 211.}
 \author{Willem Talloen}
 
 
