@@ -320,6 +320,11 @@ probabilitiesPlot(proportions = logRegRes$fit, classVar = logRegRes$y,
 		sampleNames = rownames(logRegRes), main = 'Probability of being NEG')
 @
 
+<<LogisticRegressionPlotBars, fig=TRUE, term = FALSE>>=
+probabilitiesPlot(proportions = logRegRes$fit, classVar = logRegRes$y, barPlot= TRUE,
+		sampleNames = rownames(logRegRes), main = 'Probability of being NEG')
+@
+
 \subsection{Receiver operating curve}
 A ROC curve plots the fraction of true positives (TPR = true positive rate)
    versus the fraction of false positives (FPR = false positive rate) for a binary classifier
