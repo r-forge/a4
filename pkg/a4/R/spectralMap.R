@@ -35,7 +35,7 @@ setMethod("spectralMap",
              
              colors = c("wheat", # gene color (if no smoothScatter is used)
                         "black", # color for genes considered to be outlying 
-                        a4palette(length(unique(pData(object)[, groups])))), # colors for the groups 
+                        a4palette(nlevels(pData(object)[, groups]))), # colors for the groups 
              col.size = 2,
              do.smoothScatter = TRUE),
           probe2gene = TRUE, addLegend = TRUE, legendPos = "topleft", ...){
@@ -93,8 +93,8 @@ setMethod("spectralMap",
 		  # add legend
 		  if (addLegend){
 			  legend(legendPos, bty='n', 
-					  legend = unique(pData(object)[, groups]),
-					  text.col = a4palette(length(unique(pData(object)[, groups]))),
+					  legend = levels(pData(object)[, groups]),
+					  text.col = a4palette(nlevels(pData(object)[, groups])),
 					  cex=1)
 		  }
           invisible(mpmPlot)
