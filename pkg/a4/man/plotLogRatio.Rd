@@ -142,9 +142,11 @@ a <- plotLogRatio(e=LogRatioALL[topGenes,],openFile=FALSE, tooltipvalues=FALSE, 
 		colorsColumnsBy=c('BTtype'), main = 'Top 20 genes most differentially between T- and B-cells',
 		orderBy = list(rows = "hclust"),
 		probe2gene = TRUE)
+\dontrun{		
 a <- plotLogRatio(e=LogRatioALL[topGenes,],openFile=TRUE, tooltipvalues=FALSE, device='pdf',
 		colorsColumnsBy=c('BTtype'), main = 'Top 20 genes most differentially between T- and B-cells',
 		orderBy = list(rows = "hclust", cols = "sex"),
 		probe2gene = TRUE)
+}
 }
 \keyword{hplot}
