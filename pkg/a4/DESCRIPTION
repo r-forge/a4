@@ -1,8 +1,8 @@
 Package: a4
 Type: Package
 Title: Automated Affymetrix Array Analysis
-Version: 0.0-18
-Date: 2008-05-09
+Version: 0.0-19
+Date: 2008-10-20
 Author: Willem Talloen, Tobias Verbeke, Tine Casneuf, An De Bondt, Steven Osselaer and Hinrich Goehlmann                                                                                                             
 Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.be>
 Description: Automated Affymetrix Array Analysis as Used by the

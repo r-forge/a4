@@ -1,3 +1,6 @@
+0.0-19
+    o move $SRC_PKG/etc to $SRC_PKG/inst/etc as tooltip.script (plotLogRatio) needs
+      to be available at $INSTALLED_PKG/etc
 0.0-18
     o add varEqual argument to tTest (defaults to FALSE)
     o improved y axis annotation for volcanoPlot

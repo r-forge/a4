@@ -91,19 +91,13 @@ setMethod("topTable", "fTest",
 			head(fit, n = n)
 })
 
-if (FALSE){ # TODO: remove
-  require(plyr)
-  x <- matrix(runif(970), ncol = 97)
-  ttestfun <- function(x) t.test(x, var.equal = TRUE)
-  aaply(x, ttestfun)
-}
 
 tTest2 <- function(object, groups, probe2gene = TRUE){
 	groups <- pData(object)[, groups]
 	testData <- exprs(object)
 	# t-test for differential expression
 	ttestfun <- function(y) t.test(y ~ groups, var.equal = TRUE)
-	ttests <- aaply(testData, 1, ttestfun)
+	ttests <- apply(testData, 1, ttestfun)
 	rowttests(object, groups)
 	pTtest <- data.frame(rownames(ttests), ttests[,'p.value'])
 	statTtest <- data.frame(rownames(ttests), ttests[,'statistic'])

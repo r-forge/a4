@@ -79,15 +79,15 @@ setMethod("spectralMap",
               plot.mpm.args$colors
           plot.mpm.args$col.size <- if (is.null(plot.mpm.args$col.size)) 2
             else plot.mpm.args$col.size
+        
+        if (probe2gene){
+          plot.mpm.args$labels <- pData(featureData(object))[plot.mpm.args$x$row.names,"Gene Symbol"]
+          if (is.null(plot.mpm.args$labels))
+            stop("There is no variable named'Gene Symbol' in the pData of the object.\n
+                    You may want to set the argument 'probe2gene' to FALSE (the default is TRUE)")
           
-          if (probe2gene){
-            plot.mpm.args$labels <- pData(featureData(object))[plot.mpm.args$x$row.names,"Gene Symbol"]
-			if (is.null(plot.mpm.args$labels))
-				stop("There is no variable named'Gene Symbol' in the pData of the object.\n
-								You may want to set the argument 'probe2gene' to FALSE (the default is TRUE)")
-			
-          }
-		  
+        }
+        
 		  mpmPlot <- do.call("plot.mpm", plot.mpm.args)
 		  
 		  # add legend
