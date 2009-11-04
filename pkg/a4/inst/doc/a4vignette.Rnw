@@ -482,6 +482,7 @@ dev.off()
 \afterpage{\clearpage}
 \pagebreak{}
 \subsection{Gene lists of log ratios}
+
 When analyzing treatments that are primarily interesting relative to a control treatment,
 it may be of value to look at the log ratios of several treatments (in columns)
 for a selected list of genes (in rows).
@@ -512,6 +513,39 @@ a <- plotLogRatio(e=LogRatioALL[topGenes,],openFile = FALSE, tooltipvalues = FAL
     \label{fig:GeneLRlist}
   \end{center}
 \end{figure}
+
+The following example demonstrates how to display log ratios for four compounds
+for which gene expression was measured on four timepoints.
+
+<<plotLogRatioComplex>>=
+  load(system.file("examples", "esetExampleTimeCourse.rda", package = "a4")
+  logRatioEset <- computeLogRatio(esetExampleTimeCourse, within = "hours",
+    reference = list(var = "compound", level = "DMSO"))
+
+  # re-order
+  idx <- order(pData(logRatioEset)$compound, pData(logRatioEset)$hours)
+  logRatioEset <- logRatioEset[,idx]
+  
+  # plot LogRatioEset across all
+  shortvarnames <- unique(interaction(pData(logRatioEset)$compound, pData(logRatioEset)$hours))
+  shortvarnames <- shortvarnames[-grep("DMSO", shortvarnames), drop=TRUE]
+  
+  plotLogRatio(e = logRatioEset, mx = 1, filename = "logRatioOverallTimeCourse.pdf", sep = ""),
+      gene.fontsize = 8,
+      orderBy = list(rows = "hclust", cols = NULL), colorsColumnsBy = c('compound'),
+      within = "hours", shortvarnames = shortvarnames, exp.width = 1,
+      main = paste("Differential Expression (trend at early time points) in", cl, "upon treatment with", compound),
+      reference = list(var = "compound", level = "DMSO"), device = 'pdf')
+@
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=.95\textwidth]{logRatioOverallTimeCourse.pdf}
+    \caption{Log ratios for four compounds at four time points (for 20 genes).}
+    \label{fig:logRatioOverallTimeCourse}
+  \end{center}
+\end{figure}
+
 
 \afterpage{\clearpage}
 \pagebreak{}
