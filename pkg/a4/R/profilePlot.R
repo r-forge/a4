@@ -255,7 +255,7 @@ plotCombination2genes <- function(probesetId1=NULL, probesetId2=NULL,
       warning(paste("Gene2", geneSymbol2, "corresponds to", length(probesetId2), 
               "probesets; only the first probeset (",probesetId2[1],") has been displayed on the plot."))
   }
-  groups <- as.factor(as.character(pData(object)[, groups]))
+  groups <- factor(pData(object)[, groups])[, drop=TRUE]
   exprGene1 <- exprs(object)[probesetId1[1], ]
   exprGene2 <- exprs(object)[probesetId2[1], ] 
   
