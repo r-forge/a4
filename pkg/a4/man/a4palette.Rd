@@ -11,17 +11,20 @@ a4palette(n)
   \item{n}{Number of color levels the palette should provide}
 }
 \details{
-  For n = 1, \code{"darkblue"} is returned; for n = 2 
-  \code{c("skyblue", "goldenrod")} is returned and for n > 2, 
+  For n = 1, \code{"blue"} is returned; for n = 2 
+  \code{c("red", "blue")} is returned; for n = 3 
+  \code{c("red", "green", "blue"} is returned; for n = 4 
+  \code{c("red", "green", "blue", "purple")} is returned and for n > 2, 
   the output of \code{rainbow(n)} is returned.
 }
 \value{
   a character vector of colors
 }
-\author{Tobias Verbeke}
+\author{Steven Osselaer, Tobias Verbeke}
 \seealso{\code{\link[grDevices]{rainbow}}}
 \examples{
-  a4palette(5)
+  nGroups <- 5
+  pie(rep(1,nGroups), a4palette(nGroups))
 }
 \keyword{dplot}
 
