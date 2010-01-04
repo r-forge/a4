@@ -518,7 +518,7 @@ The following example demonstrates how to display log ratios for four compounds
 for which gene expression was measured on four timepoints.
 
 <<plotLogRatioComplex>>=
-  load(system.file("examples", "esetExampleTimeCourse.rda", package = "a4")
+  load(system.file("examples", "esetExampleTimeCourse.rda", package = "a4"))
   logRatioEset <- computeLogRatio(esetExampleTimeCourse, within = "hours",
     reference = list(var = "compound", level = "DMSO"))
 
@@ -527,10 +527,12 @@ for which gene expression was measured on four timepoints.
   logRatioEset <- logRatioEset[,idx]
   
   # plot LogRatioEset across all
+  cl <- "TEST"
+  compound <- "COMPOUND"
   shortvarnames <- unique(interaction(pData(logRatioEset)$compound, pData(logRatioEset)$hours))
   shortvarnames <- shortvarnames[-grep("DMSO", shortvarnames), drop=TRUE]
   
-  plotLogRatio(e = logRatioEset, mx = 1, filename = "logRatioOverallTimeCourse.pdf", sep = ""),
+  plotLogRatio(e = logRatioEset, mx = 1, filename = "logRatioOverallTimeCourse.pdf",
       gene.fontsize = 8,
       orderBy = list(rows = "hclust", cols = NULL), colorsColumnsBy = c('compound'),
       within = "hours", shortvarnames = shortvarnames, exp.width = 1,
