@@ -1,3 +1,6 @@
+0.0-20
+    o Removed nlcv dependency to speed up reading in a4
+    o Changed column names of featureData to be concordant with BioConductor nomenclature
 0.0-19
     o move $SRC_PKG/etc to $SRC_PKG/inst/etc as tooltip.script (plotLogRatio) needs
       to be available at $INSTALLED_PKG/etc

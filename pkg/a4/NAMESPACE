@@ -1,5 +1,5 @@
 ### original a4 package functions
-import(methods, Biobase, xtable, nlcv)
+import(methods, Biobase, xtable)
 importFrom(limma, lmFit)
 importFrom(limma, eBayes)
 
