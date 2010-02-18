@@ -246,10 +246,12 @@ Forward filtering in combination with various classifiers (like DLDA, SVM, rando
  depending on the chosen selection algorithm; we usually choose Limma as a univariate
  although random forest variable importance could also be used as a multivariate selection criterium.
 
+
 <<loadNlcvTT, echo = FALSE, term = FALSE>>=
 #  nlcvTT <- nlcv(selBcrAblOrNeg, classVar = 'mol.biol', 
 #                  classdist = "unbalanced",
 #                  nRuns = 10, fsMethod = "t.test", verbose = TRUE)
+library(nlcv)
 data(nlcvTT)
 @
 
