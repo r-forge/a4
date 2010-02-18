@@ -12,7 +12,7 @@ limma2Groups <- function(object, group, probe2gene = TRUE){
   fit <- lmFit(object, design)
   fit <- eBayes(fit)
   limmaObj <- new("limma", MArrayLM = fit, 
-      geneSymbols = if (probe2gene) featureData(object)$`Gene Symbol` else NULL)
+      geneSymbols = if (probe2gene) featureData(object)$`SYMBOL` else NULL)
       # use gene symbols from ExpressionSet and not the ones
       # that are in (the third column of) limmaObj@MArrayLM$genes
   

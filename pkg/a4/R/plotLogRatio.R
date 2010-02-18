@@ -80,11 +80,11 @@ plotLogRatio <- function(
 #  browser()  
 	igenes <- featureNames(e)# function in Biobase
 	if (probe2gene == TRUE){
-		if(is.null(featureData(e)$'Entrez ID') | is.null(featureData(e)$'Gene Symbol') | is.null(featureData(e)$'Description')){
+		if(is.null(featureData(e)$'Entrez ID') | is.null(featureData(e)$'SYMBOL') | is.null(featureData(e)$'Description')){
 			e <- addGeneInfo(e)
 		}
 		igenes.ll <- featureData(e)$'Entrez ID'
-		igenes.symbol <- featureData(e)$'Gene Symbol'
+		igenes.symbol <- featureData(e)$'SYMBOL'
 		igenes.name <- featureData(e)$'Description'
 		igenes.name <- paste(igenes.symbol, igenes.name, sep = " - ")
 	}else{

@@ -12,7 +12,7 @@ plotComb2Samples <- function(object, x, y,
 	x <- exprs(object)[, as.character(x)]
 	y <- exprs(object)[, as.character(y)]
 	
-	gSymbol <- featureData(object)$`Gene Symbol`
+	gSymbol <- featureData(object)$`SYMBOL`
 
 	### determine points to label
 	if (is.null(trsholdX) & is.null(trsholdY)){

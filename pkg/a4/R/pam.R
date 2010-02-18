@@ -47,7 +47,7 @@ setMethod("topTable",
       co <- capture.output(listGenes <- pamr.listgenes(fit$pamModel, fit$exprDat, fit$delta,
           fitcv = fit$pamCV, genenames = FALSE))
       if (fit$probe2gene){
-        gSymbol <- fit$featureData[listGenes[,'id'], "Gene Symbol"]
+        gSymbol <- fit$featureData[listGenes[,'id'], "SYMBOL"]
         listGenes <- data.frame(GeneSymbol = gSymbol, listGenes)
       } else {
         listGenes <- data.frame(listGenes)

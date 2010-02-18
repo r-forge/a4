@@ -37,7 +37,7 @@ setMethod("topTable",
       coef.output <- coef(fit) # extract coefficients at a single value of lambda
       last.coef.output <- coef.output[, ncol(coef.output)]
       selProbeSets <- last.coef.output[which(last.coef.output != 0)]
-      selProbeSetsGeneSymbol <- fit$featureData[names(selProbeSets), "Gene Symbol"]
+      selProbeSetsGeneSymbol <- fit$featureData[names(selProbeSets), "SYMBOL"]
       
       selGenesOutput <- cbind.data.frame(selProbeSetsGeneSymbol, selProbeSets)
       rownames(selGenesOutput) <- names(selProbeSets)

@@ -9,7 +9,7 @@ rfClass <- function(object, groups, probe2gene = TRUE){
   
   # transfer annotation
   if (probe2gene){
-    fit$gSymbol <- featureData(object)$`Gene Symbol`
+    fit$gSymbol <- featureData(object)$`SYMBOL`
     names(fit$gSymbol) <- featureNames(object)
   }
 

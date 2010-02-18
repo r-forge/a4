@@ -20,9 +20,9 @@ tTest <- function(object, groups, probe2gene = TRUE){
 	logRatio <- rowMeans(exprs(object)[, labels == 1]) - rowMeans(exprs(object)[,labels == 0])
 	
 	if (probe2gene){
-		gSymbol <- featureData(object)$`Gene Symbol`
+		gSymbol <- featureData(object)$`SYMBOL`
 		if (is.null(gSymbol))
-			stop("There is no variable named'Gene Symbol' in the pData of the object.\n
+			stop("There is no variable named'SYMBOL' in the pData of the object.\n
 				You may want to set the argument 'probe2gene' to FALSE (the default is TRUE)")
 		
 		pvalues <- data.frame(gSymbol,
@@ -59,7 +59,7 @@ fTest <- function(object, groups, probe2gene = TRUE, varEqual = FALSE){
 	logRatio <- rowMeans(exprs(object)[, labels == 1]) - rowMeans(exprs(object)[,labels == 0])
 	
 	if (probe2gene){
-		gSymbol <- featureData(object)$`Gene Symbol`
+		gSymbol <- featureData(object)$`SYMBOL`
 		pvalues <- data.frame(gSymbol,
 				ttests[,"p.value"],
 				logRatio,
@@ -111,7 +111,7 @@ tTest2 <- function(object, groups, probe2gene = TRUE){
 	logRatio <- rowMeans(exprs(object)[, labels == 1]) - rowMeans(exprs(object)[,labels == 0])
 	
 	if (probe2gene){
-		gSymbol <- featureData(object)$`Gene Symbol`
+		gSymbol <- featureData(object)$`SYMBOL`
 		pvalues <- data.frame(gSymbol,
 				ttests[,"p.value"],
 				logRatio,

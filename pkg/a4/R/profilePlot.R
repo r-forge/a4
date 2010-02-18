@@ -37,7 +37,7 @@ plot1gene <- function (probesetId = NULL,
     probesetId <- as.character(probesetId)     # use names not position !!
     plotData <- exprs(object)[probesetId, ]
   } else { # gene given
-    probesetPos <- which(geneSymbol == featureData(object)$`Gene Symbol`)
+    probesetPos <- which(geneSymbol == featureData(object)$`SYMBOL`)
     if (!length(probesetPos))
       stop("gene 'gene' does not occur in ExpressionSet 'object'")
     
@@ -80,7 +80,7 @@ plot1gene <- function (probesetId = NULL,
   
   # prepare title
   if (probe2gene){
-    gSymbol <- featureData(object)[probesetId[1],]$`Gene Symbol`
+    gSymbol <- featureData(object)[probesetId[1],]$`SYMBOL`
   }
   
   mainTitle <- if (is.null(main)){
@@ -164,7 +164,7 @@ boxPlot <- function(probesetId = NULL,
     probesetId <- as.character(probesetId)     # use names not position !!
     plotData <- exprs(object)[probesetId, ]
   } else { # gene given
-    probesetPos <- which(geneSymbol == featureData(object)$`Gene Symbol`)
+    probesetPos <- which(geneSymbol == featureData(object)$`SYMBOL`)
     if (!length(probesetPos))
       stop("gene 'gene' does not occur in ExpressionSet 'object'")
     
@@ -198,7 +198,7 @@ boxPlot <- function(probesetId = NULL,
   
   # prepare title
   if (probe2gene){
-    gSymbol <- featureData(object)[probesetId[1],]$`Gene Symbol`
+    gSymbol <- featureData(object)[probesetId[1],]$`SYMBOL`
   }
   
   mainTitle <- if (is.null(main)){
@@ -237,7 +237,7 @@ plotCombination2genes <- function(probesetId1=NULL, probesetId2=NULL,
   if (is.null(geneSymbol1)){ # probeset given
     probesetId1 <- as.character(probesetId1)     # use names not position !!
   } else { # gene given
-    probesetPos1 <- which(geneSymbol1 == featureData(object)$`Gene Symbol`)
+    probesetPos1 <- which(geneSymbol1 == featureData(object)$`SYMBOL`)
     if (!length(probesetPos1))
       stop("gene 'gene1' does not occur in ExpressionSet 'object'")
     
@@ -250,7 +250,7 @@ plotCombination2genes <- function(probesetId1=NULL, probesetId2=NULL,
   if (is.null(geneSymbol2)){ # probeset given
     probesetId2 <- as.character(probesetId2)     # use names not position !!
   } else { # gene given
-    probesetPos2 <- which(geneSymbol2 == featureData(object)$`Gene Symbol`)
+    probesetPos2 <- which(geneSymbol2 == featureData(object)$`SYMBOL`)
     if (!length(probesetPos2))
       stop("gene 'gene2' does not occur in ExpressionSet 'object'")
     
@@ -264,8 +264,8 @@ plotCombination2genes <- function(probesetId1=NULL, probesetId2=NULL,
   exprGene2 <- exprs(object)[probesetId2[1], ] 
   
   if (probe2gene){
-    gSymbol1 <- featureData(object)[probesetId1[1],]$`Gene Symbol`
-    gSymbol2 <- featureData(object)[probesetId2[1],]$`Gene Symbol`
+    gSymbol1 <- featureData(object)[probesetId1[1],]$`SYMBOL`
+    gSymbol2 <- featureData(object)[probesetId2[1],]$`SYMBOL`
   }
   
   if (is.null(colvec))

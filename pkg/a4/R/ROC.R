@@ -32,7 +32,7 @@ ROCcurve <- function (object, groups, probesetId = NULL,
 	
 	# prepare title
 	if (probe2gene){
-		gSymbol <- featureData(object)[probesetId[1],]$`Gene Symbol`
+		gSymbol <- featureData(object)[probesetId[1],]$`SYMBOL`
 	}
 	
 	mainTitle <- if (is.null(main)){

@@ -18,7 +18,7 @@ logReg <- function(object, groups, probesetId = NULL,
 		probesetId <- as.character(probesetId)     # use names not position !!
 		exprGene <- exprs(object)[probesetId, ]
 	} else { # gene given
-		probesetPos <- which(geneSymbol == featureData(object)$`Gene Symbol`)
+		probesetPos <- which(geneSymbol == featureData(object)$`SYMBOL`)
 		if (!length(probesetPos))
 			stop("gene 'gene' does not occur in ExpressionSet 'object'")
 		
@@ -33,7 +33,7 @@ logReg <- function(object, groups, probesetId = NULL,
 	
 	# prepare title
 	if (probe2gene){
-		gSymbol <- featureData(object)[probesetId[1],]$`Gene Symbol`
+		gSymbol <- featureData(object)[probesetId[1],]$`SYMBOL`
 	}
 	
 	mainTitle <- if (is.null(main)){
