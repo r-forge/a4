@@ -35,5 +35,5 @@ ALL$BTtype <- as.factor(substr(ALL$BT,0,1))
 tTestRes <- tTest(object = ALL,	groups = "BTtype", probe2gene = TRUE)
 volcanoPlot(tTestRes)  
 }
-\seealso{\code{\link[multtest]{rowttest}}}
+\seealso{\code{\link[genefilter]{rowttests}}}
 \keyword{htest}

@@ -1,6 +1,5 @@
 \name{probabilitiesPlot}
 \alias{probabilitiesPlot}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Function to plot the probabilities to belong to a certain class
  in binary classification problems.}
 \description{
@@ -11,7 +10,6 @@
 \usage{
 probabilitiesPlot(proportions, classVar, sampleNames, plot = TRUE, barPlot = FALSE, layout = TRUE, main = NULL, sub = NULL, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{proportions}{A vector containing the calculated probabilities to belong to a certain class
  in binary classification problems. These probabilities are often calculated 
@@ -22,7 +20,7 @@ probabilitiesPlot(proportions, classVar, sampleNames, plot = TRUE, barPlot = FAL
   \item{barPlot}{Should a barplot be drawn (\code{TRUE}) or a scatterplot like
                  MCREstimate-type scores plot (the default, \code{FALSE}).}
   \item{layout}{boolean indicating whether \code{mcrPlot} should prespecify
-    a layout for a single plot (default, \code{TRUE}) or whetherl the user
+    a layout for a single plot (default, \code{TRUE}) or whether the user
     takes care of the layout (\code{FALSE})}
   \item{main}{Main title for the scores plot; if not supplied, 'Scores Plot'
               is used as a default}
@@ -31,7 +29,6 @@ probabilitiesPlot(proportions, classVar, sampleNames, plot = TRUE, barPlot = FAL
   \item{\dots}{Additional graphical parameters to pass to the plot function}
 }
 
-\references{ ~put references to the literature/web site here ~ }
 \author{Willem Talloen and Tobias Verbeke}
 
 \seealso{\code{\link{logReg}}}

@@ -1,9 +1,10 @@
-#' Wrapper for the limma function for the comparison of two groups
+#' Wrapper for the limma function for the comparison of two groups 
+#' (two factor levels)
 #' 
 #' @param object object of class ExpressionSet
 #' @param group string indicating the variable defining the two groups
 #'               to be compared
-limma2Groups <- function(object, group, probe2gene = TRUE){
+limmaTwoLevels <- function(object, group, probe2gene = TRUE){
   f <- factor(pData(object)[, group])[,drop = TRUE]
   if (nlevels(f) != 2)
     stop("Use 'limmaTwoGroups' only with a 'group' variable having two group levels")
@@ -19,9 +20,10 @@ limma2Groups <- function(object, group, probe2gene = TRUE){
   return(limmaObj) 
 }
 
+# check with Willem; no default coef (with message) / default n = 10
 
 setMethod("topTable", "limma",
-    function(fit, n, coef = 2, genelist = fit$genes, 
+    function(fit, n = 10, coef, genelist = fit$genes, 
         eb = fit[c("t", "p.value", "lods")], adjust.method = "BH",
         sort.by = "B", resort.by = NULL, p.value = 1, lfc = 0){
   

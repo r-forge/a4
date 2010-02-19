@@ -1,0 +1,10 @@
+Package: a4Core
+Type: Package
+Title: Automated Affymetrix Array Analysis Core Package
+Version: 0.0-1
+Date: 2010-02-19
+Author: Willem Talloen, Tobias Verbeke                                                                                                             
+Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
+Description: Automated Affymetrix Array Analysis  
+Depends: methods
+License: GPL-3

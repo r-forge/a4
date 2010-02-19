@@ -1,4 +1,4 @@
-\name{propDEgenes}
+\name{propDEgenes-methods}
 \alias{propDEgenes-methods}
 \alias{propDEgenes,limma-method}
 \alias{propDEgenes,numeric-method}

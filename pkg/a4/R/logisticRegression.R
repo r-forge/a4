@@ -1,9 +1,3 @@
-# TODO: Add comment
-# 
-# Author: wtalloen
-###############################################################################
-
-
 logReg <- function(object, groups, probesetId = NULL, 
 		geneSymbol = NULL, main = NULL, probe2gene = TRUE, ...){
 	
@@ -119,7 +113,31 @@ probabilitiesPlot <- function(proportions,
 			
 			### add observed class membership
 			nClasses <- length(classVarLevels)
-			classColors <- brewer.pal(nClasses+3,"YlGn")[2:(nClasses+1)] # from MCREstimate
+			classColors <- switch(nClasses+1,   # based on RColorBrewer code            
+          rgb(c(247,173,49),
+              c(252,221,163),
+              c(185,142,84),maxColorValue=255),
+          rgb(c(255,194,120,35),
+              c(255,230,198,132),
+              c(204,153,121,67),maxColorValue=255),
+          rgb(c(255,194,120,49,0),
+              c(255,230,198,163,104),
+              c(204,153,121,84,55),maxColorValue=255),
+          rgb(c(255,217,173,120,49,0),
+              c(255,240,221,198,163,104),
+              c(204,163,142,121,84,55),maxColorValue=255),
+          rgb(c(255,217,173,120,65,35,0),
+              c(255,240,221,198,171,132,90),
+              c(204,163,142,121,93,67,50),maxColorValue=255),
+          rgb(c(255,247,217,173,120,65,35,0),
+              c(255,252,240,221,198,171,132,90),
+              c(229,185,163,142,121,93,67,50),maxColorValue=255),
+          rgb(c(255,247,217,173,120,65,35,0,0),
+              c(255,252,240,221,198,171,132,104,69),
+              c(229,185,163,142,121,93,67,55,41),maxColorValue=255)
+      )
+      classColors <- classColors[2:(nClasses+1)]
+          # brewer.pal(nClasses+3,"YlGn")[2:(nClasses+1)] # from MCREstimate
 			
 			sampleLocations <- seq(along = classVar)
 			rect(xleft = sampleLocations-0.5, ybottom = -0.5, 

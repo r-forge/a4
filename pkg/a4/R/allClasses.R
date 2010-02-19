@@ -31,7 +31,6 @@ setClass("annotationTable",
 setValidity("annotationTable", .annotationTable.valid)
 
 
-
 setClass("limma",
     representation = list(MArrayLM = "MArrayLM",
         geneSymbols = "character")

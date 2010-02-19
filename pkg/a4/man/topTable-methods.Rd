@@ -51,7 +51,7 @@ fTest
   \item{fit}{object resulting from a classification or regression procedure}
   \item{n}{number of features that one wants to extract from a table that
     ranks all features according to their importance in the classification
-    or regression model}
+    or regression model; defaults to 10 for limma objects}
 }
 \keyword{methods}
 \keyword{manip}

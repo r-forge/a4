@@ -2,14 +2,11 @@ Package: a4
 Type: Package
 Title: Automated Affymetrix Array Analysis
 Version: 0.0-20
-Date: 2008-10-20
+Date: 2010-01-18
 Author: Willem Talloen, Tobias Verbeke, Tine Casneuf, An De Bondt, Steven Osselaer and Hinrich Goehlmann                                                                                                             
-Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.be>
-Description: Automated Affymetrix Array Analysis as Used by the
-  Functional Genomics Department at J\&J PRDBE    
-Depends: methods, graphics, grid, Biobase, AnnotationDbi, mpm, xtable, geneplotter, gplots, RColorBrewer,
- annaffy, genefilter, limma, Biobase, MLInterfaces, multtest, ipred, pamr, ALL,
-  glmnet, varSelRF, ROCR, gridSVG, Cairo, plyr
-Suggests: JavaGD  
+Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
+Description: Automated Affymetrix Array Analysis  
+Depends: methods, graphics, grid, Biobase, AnnotationDbi, mpm, xtable, annaffy, genefilter, limma, multtest, 
+  glmnet, gridSVG, Cairo
+Suggests: JavaGD, ALL  
 License: GPL-3
-

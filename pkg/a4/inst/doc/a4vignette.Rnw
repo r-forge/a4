@@ -38,6 +38,7 @@ data(ALL, package = "ALL")
 
 For illustrative purposes, simulated data sets can also be very valuable (but not used here).
 <<prepareSimulatedData>>=
+require(nlcv)
 esSim <- simulateData(nEffectRows=50, betweenClassDifference = 5, nNoEffectCols = 5, withinClassSd = 0.2)
 @
 
@@ -251,7 +252,6 @@ Forward filtering in combination with various classifiers (like DLDA, SVM, rando
 #  nlcvTT <- nlcv(selBcrAblOrNeg, classVar = 'mol.biol', 
 #                  classdist = "unbalanced",
 #                  nRuns = 10, fsMethod = "t.test", verbose = TRUE)
-library(nlcv)
 data(nlcvTT)
 @
 

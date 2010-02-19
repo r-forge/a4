@@ -176,7 +176,7 @@ volcanoplotter <- function(logRatio, pValue, pointLabels,
       valueOnly = TRUE)
   
   dvp <- dataViewport(xscale = range(logRatio) + c(-nMaxLabelWidth/2.2, nMaxLabelWidth/2.2),
-      yscale = range(pVals))
+      yscale = range(pVals, na.rm = TRUE))
   
   pushViewport(dvp)
   
@@ -199,7 +199,7 @@ volcanoplotter <- function(logRatio, pValue, pointLabels,
   dotColors <- if (smoothScatter){ 
         densCols(x = logRatio[-pointsToLabel], y = pVals[-pointsToLabel])
       } else {
-        brewer.pal(9, "Blues")[4]
+        "#9ECAE1" # brewer.pal(9, "Blues")[4]
       } 
   grid.points(x = unit(logRatio[-pointsToLabel], "native"),
       y = unit(pVals[-pointsToLabel], "native"),

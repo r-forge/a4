@@ -1,0 +1,2 @@
+export("confusionMatrix")
+exportMethods("topTable")
