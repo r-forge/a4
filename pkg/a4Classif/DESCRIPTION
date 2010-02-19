@@ -6,5 +6,6 @@ Date: 2010-02-19
 Author: Willem Talloen, Tobias Verbeke                                                                                                             
 Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
 Description: Automated Affymetrix Array Analysis Classification Package 
-Depends: a4Core, MLInterfaces, ROCR, pamr, glmnet, varSelRF, xtable
+Depends: methods, a4Core, MLInterfaces, ROCR, pamr, glmnet, varSelRF, xtable
+Suggests: ALL
 License: GPL-3

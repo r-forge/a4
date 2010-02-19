@@ -20,14 +20,15 @@ lassoClass(object, groups)
 \author{Willem Talloen}
 \seealso{\code{\link[glmnet]{glmnet}}}
 \examples{
-data(ALL, package = "ALL")
-ALL <- addGeneInfo(ALL)
-ALL$BTtype <- as.factor(substr(ALL$BT,0,1))
+if (require(ALL)){
+  data(ALL, package = "ALL")
+  ALL <- addGeneInfo(ALL)
+  ALL$BTtype <- as.factor(substr(ALL$BT,0,1))
 
-resultLasso <- lassoClass(object = ALL, groups = "BTtype")
-plot(resultLasso, label = TRUE,
-		main = "Lasso coefficients in relation to degree of penalization.")
-featResultLasso <- topTable(resultLasso, n = 15)
-
+  resultLasso <- lassoClass(object = ALL, groups = "BTtype")
+  plot(resultLasso, label = TRUE,
+    main = "Lasso coefficients in relation to degree of penalization.")
+  featResultLasso <- topTable(resultLasso, n = 15)
+}
 }
 \keyword{models}

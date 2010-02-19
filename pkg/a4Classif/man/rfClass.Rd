@@ -1,5 +1,6 @@
 \name{rfClass}
 \alias{rfClass}
+\alias{plot.rfClass}
 \title{Classify using Random Forests}
 \description{
   Classify using the Random Forest algorithm of Breiman (2001)

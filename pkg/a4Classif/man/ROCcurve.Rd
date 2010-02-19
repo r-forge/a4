@@ -34,8 +34,10 @@ esSim <- simulateData()
 ROCcurve(probesetId = 'Gene.1', object = esSim, groups = 'type', addLegend = FALSE)
 
 # ALL data set
-data(ALL, package = "ALL")
-ALL <- addGeneInfo(ALL)
-ALL$BTtype <- as.factor(substr(ALL$BT,0,1))
-ROCres <- ROCcurve(gene = "ABL1", object = ALL, groups = "BTtype")
+if (require(ALL)){
+  data(ALL, package = "ALL")
+  ALL <- addGeneInfo(ALL)
+  ALL$BTtype <- as.factor(substr(ALL$BT,0,1))
+  ROCres <- ROCcurve(gene = "ABL1", object = ALL, groups = "BTtype")
+}
 }
