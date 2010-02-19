@@ -1,2 +1,2 @@
-export("confusionMatrix")
+export(confusionMatrix, simulateData)
 exportMethods("topTable")
