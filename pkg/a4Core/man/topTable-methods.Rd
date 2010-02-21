@@ -12,7 +12,8 @@
 
 glmnet
 
-\item{fit = "glmnet", n = "numeric"}{glmnet objects are produced by \code{lassoClass} or \code{lassoReg}}
+\item{fit = "glmnet", n = "numeric"}{glmnet objects are produced by \code{lassoClass} (a4Classif) or 
+  \code{lassoReg} (a4Base)}
 
 }
 }
