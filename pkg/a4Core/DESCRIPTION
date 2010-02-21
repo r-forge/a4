@@ -6,5 +6,5 @@ Date: 2010-02-19
 Author: Willem Talloen, Tobias Verbeke                                                                                                             
 Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
 Description: Automated Affymetrix Array Analysis Core Package 
-Depends: methods
+Depends: methods, Biobase
 License: GPL-3
