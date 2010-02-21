@@ -1,4 +1,4 @@
-Package: a4
+Package: a4Reporting
 Type: Package
 Title: Automated Affymetrix Array Analysis Reporting Package
 Version: 0.0-1
