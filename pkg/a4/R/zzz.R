@@ -3,3 +3,4 @@
   message(paste("\na4 version ", packageDescription("a4")$Version, 
           "\n", sep = ""))
 }
+

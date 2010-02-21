@@ -1,0 +1,8 @@
+potential sections to subdivide the a4 package 
+- general
+- preprocessing
+- filtering
+- unsupervised exploration
+- detecting differential expression
+- supervised 
+

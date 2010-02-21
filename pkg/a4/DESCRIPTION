@@ -1,12 +1,10 @@
 Package: a4
 Type: Package
-Title: Automated Affymetrix Array Analysis
+Title: Automated Affymetrix Array Analysis Umbrella Package
 Version: 0.0-20
-Date: 2010-01-18
-Author: Willem Talloen, Tobias Verbeke, Tine Casneuf, An De Bondt, Steven Osselaer and Hinrich Goehlmann                                                                                                             
+Date: 2010-02-19
+Author: Willem Talloen, Tobias Verbeke                                                                                                             
 Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
-Description: Automated Affymetrix Array Analysis  
-Depends: methods, graphics, grid, Biobase, AnnotationDbi, mpm, xtable, annaffy, genefilter, limma, multtest, 
-  glmnet, gridSVG, Cairo
-Suggests: JavaGD, ALL  
+Description: Automated Affymetrix Array Analysis Umbrella Package 
+Depends: a4Core, a4Base, a4Preproc, a4Classif, a4Reporting
 License: GPL-3
