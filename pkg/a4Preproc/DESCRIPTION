@@ -1,0 +1,10 @@
+Package: a4Preproc
+Type: Package
+Title: Automated Affymetrix Array Analysis Preprocessing Package
+Version: 0.0-1
+Date: 2010-02-19
+Author: Willem Talloen, Tobias Verbeke                                                                                                             
+Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
+Description: Automated Affymetrix Array Analysis Preprocessing Package 
+Depends: methods, AnnotationDbi
+License: GPL-3
