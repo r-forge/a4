@@ -1,0 +1,7 @@
+### ex-annotationTable functions
+import("xtable")
+importFrom(utils, packageDescription)
+exportClasses("annotationTable")
+exportMethods("xtable")
+S3Method(print, xtableAnnotationTable)
+export(annotationTable, generateEntrezIdLinks, generateGOIdLinks, print.xtableAnnotationTable)

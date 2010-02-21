@@ -1,0 +1,10 @@
+Package: a4
+Type: Package
+Title: Automated Affymetrix Array Analysis Reporting Package
+Version: 0.0-1
+Date: 2010-02-21
+Author: Tobias Verbeke                                                                                                             
+Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
+Description: Automated Affymetrix Array Analysis Reporting Package 
+Depends: utils, methods, xtable
+License: GPL-3
