@@ -36,11 +36,11 @@ if (require(ALL)){
   ALL$BTtype <- as.factor(substr(ALL$BT,0,1))
   
   myGeneSymbol <- c("LCK")	# a gene 
-  probesetPos <- which(myGeneSymbol == featureData(ALL)$`Gene Symbol`)
+  probesetPos <- which(myGeneSymbol == featureData(ALL)$SYMBOL)
   myProbesetIds <- featureNames(ALL)[probesetPos]
   
-  # profilesPlot(object = ALL, probesetIds = myProbesetIds, 
-  #     orderGroups = "BT", sampleIDs = "BT")
+  profilesPlot(object = ALL, probesetIds = myProbesetIds, 
+      orderGroups = "BT", sampleIDs = "BT")
 }
 }
 %% Add one or more standard keywords, see file 'KEYWORDS' in the
