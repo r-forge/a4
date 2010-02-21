@@ -6,5 +6,5 @@ Date: 2010-02-19
 Author: Willem Talloen, Tobias Verbeke                                                                                                             
 Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
 Description: Automated Affymetrix Array Analysis Umbrella Package 
-Depends: a4Core, a4Base, a4Preproc, a4Classif, a4Reporting
+Depends: a4Base, a4Preproc, a4Classif, a4Core, a4Reporting 
 License: GPL-3
