@@ -17,3 +17,8 @@ xtable.topTablePam <- function(x, ...){
   xtable(x$topList, ...)
 }
 
+xtable.topTableRfClass <- function(x, caption = NULL, label = NULL, align = NULL, digits = NULL, 
+    display = NULL, ...){
+  xtable(x$topList, ...)
+}
+
