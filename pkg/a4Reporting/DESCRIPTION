@@ -6,5 +6,5 @@ Date: 2010-02-21
 Author: Tobias Verbeke                                                                                                             
 Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
 Description: Automated Affymetrix Array Analysis Reporting Package 
-Depends: utils, methods, xtable
+Depends: utils, methods, xtable, annaffy
 License: GPL-3
