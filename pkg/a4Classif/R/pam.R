@@ -31,14 +31,6 @@ confusionMatrix.pamClass <- function(x, ...){
   return(res)
 }
 
-xtable.pamClassConfusionTable <- function(x, caption = NULL, label = NULL, align = NULL, 
-    digits = NULL, display = NULL, ...){
-    
-  # TODO: some preprocessing
-  xtable:::xtable.matrix(x, caption = caption, label = label, align = align,
-       digits = digits, display = display, ...)
-}
-
 setOldClass("pamClass")
 
 setMethod("topTable",
@@ -70,9 +62,6 @@ print.topTablePam <- function(x,  ...){
   print(x$topList, ...)
 }
 
-xtable.topTablePam <- function(x, ...){
-  xtable(x$topList, ...)
-}
 
 plot.pamClass <- function(x, ...){
       x <- x$pamCV

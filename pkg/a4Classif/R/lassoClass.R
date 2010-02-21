@@ -7,4 +7,3 @@ lassoClass <- function(object, groups){
   fit$featureData <- pData(featureData(object))
   return(fit) 
 }
-

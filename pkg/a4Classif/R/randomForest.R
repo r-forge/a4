@@ -38,11 +38,6 @@ print.topTableRfClass <- function(x,  ...){
   print(x$topList, ...)
 }
 
-xtable.topTableRfClass <- function(x, caption = NULL, label = NULL, align = NULL, digits = NULL, 
-  display = NULL, ...){
-  xtable(x$topList, ...)
-}
-
 plot.rfClass <- function(x, ...){
       size <- x$selec.history$Number.Variables
       MCR0 <- x$selec.history$OOB
