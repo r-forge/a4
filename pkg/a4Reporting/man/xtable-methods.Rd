@@ -4,10 +4,14 @@
 \alias{xtable,annotationTable,missing,missing,missing,missing,missing-method}
 \alias{xtable,annotationTable,ANY,ANY,ANY,ANY,ANY-method}
 \alias{xtable,annotationTable,ANY,ANY,ANY,numeric,ANY-method}
+\alias{xtable.topTableGlmnet}
+\alias{xtable.pamClassConfusionTable}
+\alias{xtable.topTablePam}
 \alias{print.xtableAnnotationTable}
 \title{Methods for Function xtable in Package `annotationTable'}
 \description{
-   \code{xtable} method for \code{annotationTable} objects
+   \code{xtable} methods for several a4 objects, such as \code{annotationTable} objects, 
+   \code{topTable} objects etc.
 }
 \section{Methods}{
 \describe{
