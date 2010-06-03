@@ -7,7 +7,6 @@
 \alias{xtable.topTableGlmnet}
 \alias{xtable.pamClassConfusionTable}
 \alias{xtable.topTablePam}
-\alias{print.xtableAnnotationTable}
 \title{Methods for Function xtable in Package `annotationTable'}
 \description{
    \code{xtable} methods for several a4 objects, such as \code{annotationTable} objects, 
