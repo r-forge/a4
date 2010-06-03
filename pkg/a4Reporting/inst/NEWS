@@ -1,4 +1,5 @@
 0.0-2
   o trivial documentation fix
+  o move appropriate tests/ from a4Base
 0.0-1
   o first introduction as separate package
