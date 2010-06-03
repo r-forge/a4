@@ -1,0 +1,3 @@
+0.0-20
+  o first version as umbrella package; changes to sub-packages documented in their
+    respective NEWS files
