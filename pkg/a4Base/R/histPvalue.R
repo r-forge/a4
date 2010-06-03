@@ -26,7 +26,7 @@ histpvalueplotter <- function(pValue, addLegend = FALSE, ...){
   
   if (addLegend){
     legend("topright", bty = "n", 
-        legend = paste(propDEgenes(pValue), "% DE genes",sep = ""),
-        text.col = "goldenrod", cex=1.2)
+        legend = paste(propDEgenes(pValue), "% DE genes", sep = ""),
+        text.col = "goldenrod", cex = 1.2)
   }
 }

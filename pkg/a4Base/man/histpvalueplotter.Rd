@@ -1,6 +1,5 @@
 \name{histpvalueplotter}
 \alias{histpvalueplotter}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Workhorse function for the histPvalue function}
 \description{
 Workhorse function for the histPvalue function. 
@@ -16,9 +15,9 @@ histpvalueplotter(pValue, addLegend = FALSE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{pValue}{ ~~Describe \code{pValue} here~~ }
-  \item{addLegend}{ ~~Describe \code{addLegend} here~~ }
-  \item{\dots}{ ~~Describe \code{\dots} here~~ }
+  \item{pValue}{numeric vector of p values}
+  \item{addLegend}{logical; should a legend be added (TRUE) or not (FALSE; default)}
+  \item{\dots}{further arguments for the \code{hist} call; currently none are used}
 }
 
 \author{Willem Talloen and Tobias Verbeke}
@@ -35,7 +34,3 @@ if (require(ALL)){
   propDEgenesRes <- propDEgenes(tTestResult[,"p"])
 }
 }
-%% Add one or more standard keywords, see file 'KEYWORDS' in the
-%% R documentation directory.
-%\keyword{ ~kwd1 }
-%\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

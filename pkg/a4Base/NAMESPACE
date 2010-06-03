@@ -10,8 +10,6 @@ export(probe2gene, a4palette, filterVarInt, tTest, limmaTwoLevels, propDEgenes, 
        addQuantilesColors, combineTwoExpressionSet, computeLogRatio,
        plotLogRatio, createExpressionSet, replicates)
 
-S3method(print, topTableGlmnet)
-
 exportClasses("ExpressionSetWithComputation") # ex-jMisc
 
 exportMethods("spectralMap")

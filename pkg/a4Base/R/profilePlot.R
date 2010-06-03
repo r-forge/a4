@@ -5,11 +5,12 @@
 a4palette <- function(n){
   if (!is.numeric(n) | n < 1)
     stop("'n' should be a positive integer")
-	res <- if (n==1) "red"
-			else if (n==2) c("red","blue")
-			else if (n==3) c("red","green","blue")
-			else if (n==4) c("red","green","blue","purple")
-			else rainbow(n)
+	res <- switch(n, 
+      "1" = "red",
+			"2" = c("red","blue"),
+			"3"  = c("red","green","blue"),
+			"4" = c("red","green","blue","purple"),
+			rainbow(n))
   return(res)
 }
 

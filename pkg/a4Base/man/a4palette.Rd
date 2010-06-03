@@ -23,8 +23,10 @@ a4palette(n)
 \author{Steven Osselaer, Tobias Verbeke}
 \seealso{\code{\link[grDevices]{rainbow}}}
 \examples{
-  nGroups <- 5
-  pie(rep(1,nGroups), a4palette(nGroups))
+  op <- par(mfrow = c(2, 3))
+  for (nGroups in 1:6)
+    pie(rep(1, nGroups), a4palette(nGroups))
+  par(op)
 }
 \keyword{dplot}
 

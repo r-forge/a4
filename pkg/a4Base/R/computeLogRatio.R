@@ -237,7 +237,8 @@
     phenoData=phenoData,
     featureData=featureData(e),
     experimentData=experimentData(e),
-    annotation=annotation(e))
+    annotation=annotation(e)) # ,
+    # protocolData = new('AnnotatedDataFrame', data = data.frame()))
   invisible(out)  
 }
 

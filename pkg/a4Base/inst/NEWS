@@ -1,3 +1,6 @@
+0.0-21
+    o move annotationTable tests to the a4Reporting package
+    o complete documentation for histpvalue plotter
 0.0-20
     o topTable method for limma objects gains default setting for n (n=10) and looses
        default for coef (in order to force people to make the right choice instead 
@@ -5,7 +8,7 @@
     o removed nlcv dependency to speed up loading a4
     o remove RColorBrewer dependency (speed up loading)
     o changed column names of featureData to be concordant with BioConductor nomenclature
-    o split off a4Core, a4Preproc and a4Classif packages
+    o split off a4Core, a4Preproc and a4Classif packages and become a4Base
 0.0-19
     o move $SRC_PKG/etc to $SRC_PKG/inst/etc as tooltip.script (plotLogRatio) needs
       to be available at $INSTALLED_PKG/etc
