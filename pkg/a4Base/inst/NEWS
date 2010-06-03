@@ -1,6 +1,7 @@
 0.0-21
     o move annotationTable tests to the a4Reporting package
     o complete documentation for histpvalue plotter
+    o added heatmap.expressionSet
 0.0-20
     o topTable method for limma objects gains default setting for n (n=10) and looses
        default for coef (in order to force people to make the right choice instead 

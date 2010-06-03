@@ -8,7 +8,7 @@ export(probe2gene, a4palette, filterVarInt, tTest, limmaTwoLevels, propDEgenes, 
        volcanoPlot, volcanoplotter, lassoReg, logReg, probabilitiesPlot, 
        plot1gene, plotCombination2genes, boxPlot, plotComb2Samples, plotCombMultSamples, profilesPlot,
        addQuantilesColors, combineTwoExpressionSet, computeLogRatio,
-       plotLogRatio, createExpressionSet, replicates)
+       plotLogRatio, createExpressionSet, replicates, heatmap.expressionSet)
 
 exportClasses("ExpressionSetWithComputation") # ex-jMisc
 

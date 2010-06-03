@@ -7,6 +7,6 @@ Author: Willem Talloen, Tobias Verbeke, Tine Casneuf, An De Bondt, Steven Ossela
 Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
 Description: Automated Affymetrix Array Analysis  
 Depends: methods, graphics, grid, Biobase, AnnotationDbi, annaffy, mpm, genefilter, limma, multtest, 
-  glmnet, a4Preproc, a4Core
+  glmnet, a4Preproc, a4Core, gplots
 Suggests: JavaGD, gridSVG, Cairo, ALL  
 License: GPL-3
