@@ -1,8 +1,3 @@
-# TODO: Add comment
-# 
-# Author: wtalloen
-###############################################################################
-
 ROCcurve <- function (object, groups, probesetId = NULL, 
 		geneSymbol = NULL, main = NULL, probe2gene = TRUE, ...){
 	
