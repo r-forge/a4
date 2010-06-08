@@ -32,13 +32,13 @@ setMethod("spectralMap",
              lab.size = 0.85,
              col.group = pData(object)[, groups],
              # colors = c("orange1", "red", rainbow(length(unique(col.group)), start=2/6, end=4/6)),
-             
              colors = c("wheat", # gene color (if no smoothScatter is used)
                         "black", # color for genes considered to be outlying 
                         a4palette(nlevels(pData(object)[, groups]))), # colors for the groups 
              col.size = 2,
              do.smoothScatter = TRUE),
           probe2gene = TRUE, addLegend = TRUE, legendPos = "topleft", ...){
+        
           expressionData <- exprs(object)
           chip <- annotation(object)
           chipAnnotationPkg <- paste(chip, "db", sep = ".")
@@ -74,7 +74,7 @@ setMethod("spectralMap",
           plot.mpm.args$col.group <- if (is.null(plot.mpm.args$col.group)) pData(object)[, groups]
             else plot.mpm.args$col.group
           plot.mpm.args$colors <- if (is.null(plot.mpm.args$colors)) 
-              c("wheat", "black", rainbow(length(unique(pData(object)[, groups]))))
+              c("wheat", "black", a4palette(nlevels(pData(object)[, groups])))
             else
               plot.mpm.args$colors
           plot.mpm.args$col.size <- if (is.null(plot.mpm.args$col.size)) 2
@@ -94,7 +94,7 @@ setMethod("spectralMap",
 		  if (addLegend){
 			  legend(legendPos, bty = "n", 
 					  legend = levels(pData(object)[, groups]),
-					  text.col = colors[-c(1, 2)],
+					  text.col = plot.mpm.args$colors,
 					  cex = 1)
 		  }
           invisible(mpmPlot)
