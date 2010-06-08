@@ -83,7 +83,7 @@ setMethod("spectralMap",
         if (probe2gene){
           plot.mpm.args$labels <- pData(featureData(object))[plot.mpm.args$x$row.names,"SYMBOL"]
           if (is.null(plot.mpm.args$labels))
-            stop("There is no variable named'SYMBOL' in the pData of the object.\n
+            stop("There is no variable named 'SYMBOL' in the pData of the object.\n
                     You may want to set the argument 'probe2gene' to FALSE (the default is TRUE)")
           
         }
@@ -92,10 +92,10 @@ setMethod("spectralMap",
 		  
 		  # add legend
 		  if (addLegend){
-			  legend(legendPos, bty='n', 
+			  legend(legendPos, bty = "n", 
 					  legend = levels(pData(object)[, groups]),
-					  text.col = a4palette(nlevels(pData(object)[, groups])),
-					  cex=1)
+					  text.col = colors[-c(1, 2)],
+					  cex = 1)
 		  }
           invisible(mpmPlot)
 })

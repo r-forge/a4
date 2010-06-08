@@ -5,12 +5,11 @@
 a4palette <- function(n){
   if (!is.numeric(n) | n < 1)
     stop("'n' should be a positive integer")
-	res <- switch(n, 
-      "1" = "red",
-			"2" = c("red","blue"),
-			"3"  = c("red","green","blue"),
-			"4" = c("red","green","blue","purple"),
-			rainbow(n))
+	res <- if (n==1) "red"
+			else if (n==2) c("red","blue")
+			else if (n==3) c("red","green","blue")
+			else if (n==4) c("red","green","blue","purple")
+			else rainbow(n)
   return(res)
 }
 
@@ -297,7 +296,7 @@ profilesPlot <- function (object, probesetIds, sampleIDs = TRUE,
   if (length(probesetIds) < 2)
     stop("Please provide at least two 'probesetIds'")
   
-  if ((length(sampleIDs) > 1) | !(is.logical(sampleIDs) | is.character(sampleIDs)))
+  if((length(sampleIDs) > 1) | !(is.logical(sampleIDs) | is.character(sampleIDs)))
     stop("'sampleIDs' should either be a logical or a character of length one")
   
   plotData <- t(exprs(object)[probesetIds,])
@@ -312,7 +311,7 @@ profilesPlot <- function (object, probesetIds, sampleIDs = TRUE,
   if (is.null(colvec)){
     colvec <- a4palette(ncol(plotData))	  
   } else {
-    if (length(colvec) != ncol(plotData))
+    if(length(colvec) != ncol(plotData))
       stop("'colvec' should contain as many elements as there are levels in 'groups' or 'colgroups'")
   }
   
@@ -322,7 +321,7 @@ profilesPlot <- function (object, probesetIds, sampleIDs = TRUE,
       axes = FALSE, lwd = 1, lty = 1, col = colvec, ...)
   axis(2, las = 2, cex.axis = 0.7, lwd = 1.5)
   
-  # x-axis
+  #x-axis
   if (is.logical(sampleIDs)){
     if (sampleIDs){
       axis(1, labels = rownames(plotData), las = 3, at = 1:nrow(plotData),
@@ -339,7 +338,7 @@ profilesPlot <- function (object, probesetIds, sampleIDs = TRUE,
   }
   
   if (addLegend){
-    legend(legendPos, bty = "n", 
+    legend(legendPos, bty='n', 
         legend = colnames(plotData),
         text.col = colvec, cex=1)
   }
