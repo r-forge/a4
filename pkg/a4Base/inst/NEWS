@@ -1,3 +1,5 @@
+0.0-22
+    o allow for specifying xlab and ylab in histPvalue
 0.0-21
     o move annotationTable tests to the a4Reporting package
     o complete documentation for histpvalue plotter

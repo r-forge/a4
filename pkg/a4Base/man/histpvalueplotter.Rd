@@ -11,12 +11,14 @@ This function displays the distribution of the p values using
   expressed genes.
 }
 \usage{
-histpvalueplotter(pValue, addLegend = FALSE, ...)
+histpvalueplotter(pValue, addLegend = FALSE, xlab = NULL, ylab = NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{pValue}{numeric vector of p values}
   \item{addLegend}{logical; should a legend be added (TRUE) or not (FALSE; default)}
+  \item{xlab}{label for the x axis; defaults to NULL (no label)}
+  \item{ylab}{label for the y axis; defaults to NULL (no label)}
   \item{\dots}{further arguments for the \code{hist} call; currently none are used}
 }
 
@@ -30,7 +32,7 @@ if (require(ALL)){
   ALL$BTtype <- as.factor(substr(ALL$BT,0,1))
  
   tTestResult <- tTest(ALL, "BTtype")
-  histPvalue(tTestResult[,"p"], addLegend = TRUE)
+  histPvalue(tTestResult[,"p"], addLegend = TRUE, xlab = "Adjusted P Value")
   propDEgenesRes <- propDEgenes(tTestResult[,"p"])
 }
 }
