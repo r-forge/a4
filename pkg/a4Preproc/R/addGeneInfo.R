@@ -8,7 +8,7 @@ addGeneInfo <- function(eset, annotationLibrary = NULL){
 	if (is.null(annotationLibrary)) {
 		annotationLibrary <- annotation(eset)}
 	
-	annotationPkg <- paste(annotation(eset), ".db", sep="")
+	annotationPkg <- paste(annotationLibrary, ".db", sep="")
 	require(annotationPkg, character.only = TRUE)
 	fNames <- featureNames(eset)
 	
