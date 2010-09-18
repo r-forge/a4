@@ -28,7 +28,7 @@ histPvalue(object, ...)
      Microarrays, Chapman \& Hall/CRC, p. 253.
 }
 \author{Willem Talloen and Tobias Verbeke}
-\seealso{\code{\link{hist}}}
+\seealso{\code{\link{hist}}, \code{\link{histpvalueplotter}}}
 \examples{
 if (require(ALL)){
   data(ALL, package = "ALL")

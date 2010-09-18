@@ -9,7 +9,7 @@
 \usage{
 plot1gene(probesetId = NULL, geneSymbol = NULL, object, groups, main = NULL, colvec = NULL,
 	colgroups = NULL, probe2gene = TRUE, sampleIDs = TRUE, 
-	addLegend = TRUE, legendPos = "topleft", ...)
+	addLegend = TRUE, legendPos = "topleft", cex = 1.5, ...)
 }
 \arguments{
   \item{probesetId}{The probeset ID. These should be stored in the \code{featureNames}
@@ -33,7 +33,8 @@ plot1gene(probesetId = NULL, geneSymbol = NULL, object, groups, main = NULL, col
   \item{addLegend}{Boolean indicating whether a legend for the colors of the dots should be added.}
   \item{legendPos}{Specify where the legend should be placed. Typically either \code{topright},
    \code{bottomright}, \code{topleft} (the default) or \code{bottomleft}}
-  \item{\dots}{Possibility to add extra plot options. See \code{\link{par}}}
+  \item{cex}{character expansion used for the plot symbols; defaults to 1.5}
+  \item{\dots}{Further arguments, e.g. to add extra plot options. See \code{\link{par}}}
 }
 \value{
   If a \code{geneSymbol} is given that has more than one probeSet,
