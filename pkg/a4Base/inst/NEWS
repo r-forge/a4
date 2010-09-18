@@ -1,3 +1,5 @@
+0.0-23
+    o add support for cex, cex.lab, cex.main to plot1gene
 0.0-22
     o allow for specifying xlab and ylab in histPvalue
 0.0-21

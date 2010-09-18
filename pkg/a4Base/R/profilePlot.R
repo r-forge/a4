@@ -1,7 +1,3 @@
-
-#=======================
-# plot1gene : make fixed or flexible (default) if requested
-
 a4palette <- function(n){
   if (!is.numeric(n) | n < 1)
     stop("'n' should be a positive integer")
@@ -19,13 +15,15 @@ plot1gene <- function (probesetId = NULL,
     object, groups, main = NULL, colvec = NULL,
     colgroups = NULL, 
     probe2gene = TRUE, sampleIDs = TRUE, 
-    addLegend = TRUE, legendPos = "topleft", ...) {
+    addLegend = TRUE, legendPos = "topleft", cex = 1.5, ...) {
   
   if (!is.null(probesetId) & !is.null(geneSymbol))
     stop("Please provide either a 'probesetId' or a 'geneSymbol'")
   
   if((length(sampleIDs) > 1) | !(is.logical(sampleIDs) | is.character(sampleIDs)))
     stop("'sampleIDs' should either be a logical or a character of length one")
+  
+  dotList <- list(...)
   
   groups <- pData(object)[, groups]
   if (!is.factor(groups))
@@ -83,6 +81,9 @@ plot1gene <- function (probesetId = NULL,
     gSymbol <- featureData(object)[probesetId[1],]$`SYMBOL`
   }
   
+  cexMain <- if (is.null(dotList$cex.main)) par("cex.main") else dotList$cex.main
+  cexLab <- if (is.null(dotList$cex.lab)) par("cex.lab") else dotList$cex.lab
+  
   mainTitle <- if (is.null(main)){
         if (probe2gene)
           paste(gSymbol, " (", probesetId[1], ")", sep = "")
@@ -93,9 +94,10 @@ plot1gene <- function (probesetId = NULL,
   
   plot(1:(nc + 1), c(mean(plotData), plotData), type = "n",
       axes = FALSE, xlab = "", ylab = expression(log[2] ~ intensity),
-      main = mainTitle)
+      main = mainTitle, cex.main = cexMain, cex.lab = cexLab)
   
-  points(2:(nc + 1), plotData, bg = colvec[numericColgroups], pch = 21, cex=1.5)
+  points(2:(nc + 1), plotData, bg = colvec[numericColgroups], pch = 21, 
+      cex = cex)
   
   axis(2, las = 2, cex.axis = 0.7, lwd = 1.5)
   
@@ -225,8 +227,8 @@ boxPlot <- function(probesetId = NULL,
 }
 
 # plot combination of two genes
-plotCombination2genes <- function(probesetId1=NULL, probesetId2=NULL,
-    geneSymbol1=NULL, geneSymbol2=NULL,
+plotCombination2genes <- function(probesetId1 = NULL, probesetId2 = NULL,
+    geneSymbol1 = NULL, geneSymbol2 = NULL,
     object, groups, addLegend = TRUE, legendPos = "topleft",
     probe2gene = TRUE, colvec = NULL, ...) {
   
@@ -321,7 +323,7 @@ profilesPlot <- function (object, probesetIds, sampleIDs = TRUE,
       axes = FALSE, lwd = 1, lty = 1, col = colvec, ...)
   axis(2, las = 2, cex.axis = 0.7, lwd = 1.5)
   
-  #x-axis
+  # x-axis
   if (is.logical(sampleIDs)){
     if (sampleIDs){
       axis(1, labels = rownames(plotData), las = 3, at = 1:nrow(plotData),
@@ -338,8 +340,8 @@ profilesPlot <- function (object, probesetIds, sampleIDs = TRUE,
   }
   
   if (addLegend){
-    legend(legendPos, bty='n', 
+    legend(legendPos, bty = "n", 
         legend = colnames(plotData),
-        text.col = colvec, cex=1)
+        text.col = colvec, cex = 1)
   }
 }
