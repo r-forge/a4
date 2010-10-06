@@ -1,3 +1,5 @@
+0.0-24
+    o add proper support for the main argument in histPvalue methods.
 0.0-23
     o add support for cex, cex.lab, cex.main to plot1gene
 0.0-22

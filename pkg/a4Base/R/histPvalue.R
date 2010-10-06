@@ -17,9 +17,11 @@ setMethod("histPvalue", "numeric",
 })
 
 
-histpvalueplotter <- function(pValue, addLegend = FALSE, xlab = NULL, ylab = NULL, ...){
+histpvalueplotter <- function(pValue, addLegend = FALSE, xlab = NULL, ylab = NULL, main = NULL, ...){
   
-  histOutput <- hist(pValue, 50, col = "skyblue", main = "", xlab = xlab, ylab = ylab, ...)
+  mainTitle <- if (is.null(main)) "" else  main
+  
+  histOutput <- hist(pValue, 50, col = "skyblue", main = mainTitle, xlab = xlab, ylab = ylab, ...)
   lengthHist <- length(histOutput$counts)
   meanNonDE <- mean(histOutput$counts[(lengthHist/2):lengthHist])
   abline(h = meanNonDE, col = 'goldenrod', lwd = 2)
