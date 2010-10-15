@@ -17,7 +17,7 @@ setMethod("histPvalue", "MArrayLM",
     function(object, coef, ...){
       
       if (missing(coef))
-        stop("Please specify a 'coef' argument to select a coefficient for the topTable function used internally.")
+        stop("Please specify a 'coef' argument to select a coefficient for which the P values should be displayed.")
       
       pValue <- topTable(object, coef = coef, n = nrow(object))$P.Value
       
