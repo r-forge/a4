@@ -2,6 +2,7 @@
 \alias{histPvalue}
 \alias{histPvalue,tTest-method}
 \alias{histPvalue,limma-method}
+\alias{histPvalue,MArrayLM-method}
 \alias{histPvalue,numeric-method}
 \title{Plot the Distribution of P Values}
 \description{
@@ -13,11 +14,14 @@
   expressed genes.
 }
 \usage{
-histPvalue(object, ...)
+histPvalue(object,  ...)
+\S4method{histPvalue}{MArrayLM}(object, coef, ...)
 }
 \arguments{
   \item{object}{either a numeric vector of p-values,
-  or an object of class \code{tTest} or \code{limma}}
+  or an object of class \code{tTest}, \code{limma} or \code{MArrayLM}}
+  \item{coef}{index of the coefficient for which the p values should be plotted;
+    only applies to the MArrayLM method}
   \item{\dots}{further arguments passed to the method}
 }
 \value{

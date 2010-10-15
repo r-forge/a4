@@ -21,18 +21,17 @@ limmaTwoLevels <- function(object, group, probe2gene = TRUE){
 }
 
 # check with Willem; no default coef (with message) / default n = 10
+# coef = 2 because we are not interested whether the intercept is significant 
+# but whether group 2 is significantly different from group 1
 
 setMethod("topTable", "limma",
-    function(fit, n = 10, coef, genelist = fit$genes, 
+    function(fit, n = 10, coef = 2, genelist = fit$genes, 
         eb = fit[c("t", "p.value", "lods")], adjust.method = "BH",
         sort.by = "B", resort.by = NULL, p.value = 1, lfc = 0){
-  
-      # coef = 2 because we are not interested whether the intercept is significant 
-      # but whether group 2 is significantly different from group 1
       
       fit <- fit@MArrayLM
-      ### from limma:::topTable
       
+      ### from limma:::topTable
       if (length(coef) > 1) {
         coef <- unique(coef)
         if (length(fit$coef[1, coef]) < ncol(fit)) 

@@ -6,10 +6,24 @@ setMethod("histPvalue", "limma",
     function(object, ...){
     
     nGenes <- length(object@geneSymbols)
-    pValue <- topTable(object, n = nGenes)$P.Value
     
-    histpvalueplotter(pValue = pValue)      
+    # currently default of coef = 2 is OK (as only limmaTwoLevels generates an object of class 'limma')
+    pValue <- topTable(object, coef = 2, n = nGenes)$P.Value
+    
+    histpvalueplotter(pValue = pValue, ...)      
 })
+
+setMethod("histPvalue", "MArrayLM",
+    function(object, coef, ...){
+      
+      if (missing(coef))
+        stop("Please specify a 'coef' argument to select a coefficient for the topTable function used internally.")
+      
+      pValue <- topTable(object, coef = coef, n = nrow(object))$P.Value
+      
+      histpvalueplotter(pValue = pValue, ...)      
+    })
+
 
 setMethod("histPvalue", "numeric",
     function(object, ...){
