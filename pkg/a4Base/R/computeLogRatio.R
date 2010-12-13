@@ -24,7 +24,7 @@
   if (!all(c(reference$var,reference$across) %in% colnames(pData(e)))) 
   {
     stop(paste('\n reference var or any variable in across not present in phenotype data',' (',
-        paste(c(var, across), collapse=' '),')\n',sep=''))
+        paste(c(reference$var, across), collapse=' '),')\n',sep=''))
   }
   if (!(reference$level %in% unique(pData(e)[,reference$var]))) 
   {
@@ -137,7 +137,7 @@
       if (nrow(tmp.pData)>0){
         exprs.var <- do.call('cbind',
             lapply(igroups[which.enough.replicates],function(group) 
-                apply(exprs(e)[,rownames(group)],1,var)))
+                apply(exprs(e)[,rownames(group)],1,stats::var)))
         colnames(exprs.var) <- paste(irootnames[which.enough.replicates],'var',sep='.')     
             
         pData.var <- cbind(tmp.pData,statistic='var')
