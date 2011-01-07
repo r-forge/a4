@@ -1,6 +1,6 @@
 # test annotationTable functionality
 
-library(a4)
+library(a4Reporting)
 
 ## some dummy data
 set.seed(123)

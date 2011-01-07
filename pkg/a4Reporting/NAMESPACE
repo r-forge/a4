@@ -1,7 +1,7 @@
 import("xtable")
 importFrom(utils, packageDescription)
 export(annotationTable, generateEntrezIdLinks, generateGOIdLinks, print.xtableAnnotationTable)
-S3Method(print, xtableAnnotationTable)
+S3method(print, xtableAnnotationTable)
 S3method(xtable, pamClassConfusionTable)
 S3method(xtable, topTablePam)
 S3method(xtable, topTableGlmnet)
