@@ -94,8 +94,6 @@ A spectral map of the \texttt{ALL} data set shows that the B- and the T-subtypes
  
 <<spectralMapALL, fig=TRUE>>=
 spectralMap(object = ALL, groups = "BT")
-legend('bottomright', legend=levels(pData(ALL)$BT),
-		text.col= a4palette(nlevels(pData(ALL)$BT)), bty='n')
   
   # optional argument settings
   #    plot.mpm.args=list(label.tol = 12, zoom = c(1,2), do.smoothScatter = TRUE),
@@ -106,8 +104,6 @@ A spectral map of the \texttt{bcrAblOrNeg} data subset does not show a clusterin
 
 <<spectralMapALLSubset, fig=TRUE>>=
 spectralMap(object = bcrAblOrNeg, groups = "mol.biol", probe2gene = TRUE)
-legend('topright', legend=levels(pData(bcrAblOrNeg)$mol.biol),
-		text.col= a4palette(nlevels(pData(bcrAblOrNeg)$mol.biol)), bty='n')
 @
 
 \section{Filtering}
@@ -559,9 +555,52 @@ for which gene expression was measured on four timepoints.
 
 \subsection{Minus log p}
  
-<<MLP, term = FALSE>>=
+<<MLP>>=
+require(MLP)
+# create groups
+labels <- as.factor(ifelse(regexpr("^B", as.character(pData(ALL)$BT))==1,'B','T'))
+pData(ALL)$BT2 <- labels
 
+# generate p-values
+limmaResult <- limmaTwoLevels(object =  ALL, group = "BT2")
+pValues <- limmaResult@MArrayLM$p.value
+
+pValueNames <- fData(ALL)[rownames(pValues), 'ENTREZID']
+pValues <- pValues[,2]
+names(pValues) <- pValueNames
+pValues <- pValues[!is.na(pValueNames)]
 @
+
+<<geneSet>>=
+geneSet <- getGeneSets(species = "Human", 
+    geneSetSource = "GOBP", 
+    entrezIdentifiers = names(pValues)
+)
+tail(geneSet, 3)
+@
+
+<<MLP>>=
+mlpOut <- MLP(
+    geneSet = geneSet, 
+    geneStatistic = pValues, 
+    minGenes = 5, 
+    maxGenes = 100, 
+    rowPermutations = TRUE, 
+    nPermutations = 50, 
+    smoothPValues = TRUE, 
+    probabilityVector = c(0.5, 0.9, 0.95, 0.99, 0.999, 0.9999, 0.99999), 
+    df = 9)   
+@
+
+<<GOgraph, fig=FALSE>>=
+  pdf(file = "GOgraph.pdf")
+    plot(mlpOut, type = "GOgraph", nRow = 25)
+	dev.off()
+@
+
+\begin{figure}
+\includegraphics{GOgraph}
+\end{figure}
 
 \subsection{Gene set enrichment analysis}
  
