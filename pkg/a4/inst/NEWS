@@ -1,3 +1,5 @@
+0.0-21
+  o update vignette using a4Base 0.0-27
 0.0-20
   o first version as umbrella package; changes to sub-packages documented in their
     respective NEWS files
