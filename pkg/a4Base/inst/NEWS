@@ -1,3 +1,5 @@
+on0.0-26
+    o better argument handling for mpm
 0.0-25
     o fix histPvalue for limma objects
     o add histPvalue method for MArrayLM objects
