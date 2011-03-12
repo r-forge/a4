@@ -540,7 +540,7 @@ The following example demonstrates how to display log ratios for four compounds
 for which gene expression was measured on four timepoints.
 
 <<plotLogRatioComplex, keep.source=TRUE>>=
-  load(system.file("examples", "esetExampleTimeCourse.rda", package = "a4"))
+  load(system.file("extdata", "esetExampleTimeCourse.rda", package = "a4"))
   logRatioEset <- computeLogRatio(esetExampleTimeCourse, within = "hours",
     reference = list(var = "compound", level = "DMSO"))
 
