@@ -1,8 +1,8 @@
 Package: a4
 Type: Package
 Title: Automated Affymetrix Array Analysis Umbrella Package
-Version: 0.0-21
-Date: 2011-02-03
+Version: 0.99.0
+Date: 2011-03-12
 Author: Willem Talloen, Tobias Verbeke                                                                                                             
 Maintainer: Tobias Verbeke <tobias.verbeke@openanalytics.eu>
 Description: Automated Affymetrix Array Analysis Umbrella Package 
