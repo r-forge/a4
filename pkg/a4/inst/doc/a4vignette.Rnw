@@ -7,8 +7,6 @@
 \usepackage{geometry}
 \geometry{ hmargin=3cm, vmargin=2.5cm }
 \usepackage{graphicx}
-
-
 \begin{document}
 
 % \VignetteIndexEntry{a4vignette}
@@ -22,12 +20,34 @@
 \pagebreak{}
 
 <<config,echo=FALSE>>=
-options(width = 55)
+options(width = 50)
 options(continue=" ")
 options(prompt="R> ")
 set.seed(123)
 @
 
+\section{Introduction}
+
+The \texttt{a4} suite of packages is a suite for convenient analysis of Affymetrix microarray
+experiments which supplements Goehlmann and Talloen (2010). The suite currently consists of several packages which are centered around
+particular tasks:
+\begin{itemize}
+  \item \texttt{a4Preproc}: package for preprocessing of microarray data. Currently the only function
+    in the package adds complementary annotation information to the ExpressionSet objects
+    (in function \texttt{addGeneInfo}). Many of the subsequent analysis functions rely on the presence
+    of such information.
+  \item \texttt{a4Core}: package made to allow for easy interoperability with the \texttt{nlcv} package
+    which is currently being developed on R-Forge at \url{http://r-forge.r-project.org/projects/nlcv}.
+  \item \texttt{a4Base}: all basic functionality of the \texttt{a4} suite
+  \item \texttt{a4Classif}: functionality for classification work that has been split off a.o. 
+    in order to reduce \texttt{a4Base} loading time
+  \item \texttt{a4Reporting}: a package which provides reporting functionality and defines
+    \texttt{xtable}-methods that are foreseen for tables with hyperlinks to public gene annotation
+    resources. 
+\end{itemize}
+
+This document provides an overview of the typical analysis workflow for such microarray experiments using 
+functionality of all of the mentioned packages. 
 
 \section{Preparation of the Data}
 First we load the package \texttt{a4} and the example real-life data set \texttt{ALL}.
@@ -137,7 +157,7 @@ The proportion of genes that are trully differentially expressed is estimated to
 The toptable and the volcano plot show that three most significant probe sets all target \texttt{ABL1}.
 This makes sense as the main difference between BCR/ABL and NEG cells is a mutation in this particular ABL gene.
 
-<<tabTTest, results = tex, term = FALSE>>=
+<<tabTTest, results = tex, term = FALSE, keep.source=TRUE>>=
 tabTTest <- topTable(tTestResult, n = 10)
 xtable(tabTTest,
     caption="The top 5 features selected by an ordinary t-test.",
@@ -166,14 +186,14 @@ It is very useful to put lists of genes in annotated tables where the genes get 
 tabLimma <- topTable(limmaResult, n = 10, coef = 2) # 1st is (Intercept)
 @
 
-<<annotationTableLimma, results = tex, fig = FALSE, echo = FALSE, term = FALSE>>=
+<<annotationTableLimma, results = tex, fig = FALSE, echo = FALSE, term = FALSE, keep.source=TRUE>>=
   tabLimmaSel <- tabLimma[,c("SYMBOL", "logFC", "AveExpr","P.Value","adj.P.Val", "GENENAME" )]
   tabLimmaSel[, "GENENAME"] <- substr(tabLimmaSel[,"GENENAME"], 1, 38)
   dData <- data.frame(Gene = tabLimmaSel[, 1], tabLimmaSel[,-1],
       stringsAsFactors = FALSE,  row.names = NULL)
   hData <- data.frame(Gene = generateEntrezIdLinks(tabLimma[,"ENTREZID"]))
   tabAnnot <- annotationTable(displayData = dData, hrefData = hData)
-  xTabAnnot <- xtable(tabAnnot, digits = 2, #label = "tab:limmaDEgenes",
+  xTabAnnot <- xtable(tabAnnot, digits = 2,
          caption = "Top differentially expressed genes between disabled anf functional p53 cell lines.")
   print(xTabAnnot, include.rownames = FALSE, floating = FALSE)
 @
@@ -209,7 +229,7 @@ All four methods have the property that they search for the smallest set of gene
 \subsection{PAM}
 PAM (Tibshirani 2002) applies univariate and dependent feature selection.
 
-<<PAM, fig=TRUE, results = tex, term=FALSE>>=
+<<PAM, fig=TRUE, results = tex, term=FALSE, keep.source=TRUE>>=
 resultPam <- pamClass(selBcrAblOrNeg, "mol.biol")
 plot(resultPam)
 featResultPam <- topTable(resultPam, n = 15)
@@ -222,7 +242,7 @@ Random forest with variable importance filtering (Breiman 2001, Diaz-Uriarte 200
  and dependent feature selection. Be cautious when interpreting its outcome, as the obtained results
  are unstable and sometimes overoptimistic.
 
-<<randomForest, fig=TRUE, results = tex>>=
+<<randomForest, fig=TRUE, results = tex, keep.source=TRUE>>=
 resultRF <- rfClass(selBcrAblOrNeg, "mol.biol")
 plot(resultRF, which = 2)
 featResultRF <- topTable(resultRF, n = 15)
@@ -232,7 +252,7 @@ xtable(head(featResultRF$topList),
 @
 
 
-<<plotTop2_3genesRf, fig=FALSE, echo=FALSE>>=
+<<plotTop2_3genesRf, fig=FALSE, echo=FALSE, keep.source=TRUE>>=
 plotCombination2genes(probesetId1=rownames(featResultRF$topList)[1],
 		probesetId2=rownames(featResultRF$topList)[2],
 		object = selBcrAblOrNeg, groups = "mol.biol")
@@ -252,51 +272,52 @@ Forward filtering in combination with various classifiers (like DLDA, SVM, rando
 data(nlcvTT)
 @
 
-<<MCRPlot, fig = TRUE, term = FALSE>>=
+<<MCRPlot, fig = TRUE, term = FALSE, keep.source=TRUE>>=
 mcrPlot_TT <- mcrPlot(nlcvTT, plot = TRUE, optimalDots = TRUE,
 		layout = TRUE, main = "t-test selection")
 @
 
 <<tabmcrPlot, results = tex, echo = FALSE>>=
 xtable(summary(mcrPlot_TT),rownames=TRUE,
-    caption='Optimal number of genes per classification method together with the 
-    respective misclassification error rate (mean and standard deviation across all CV loops).',
-    label='tabmcrPlot_TT')
+    caption = "Optimal number of genes per classification method together with the 
+    respective misclassification error rate (mean and standard deviation across all CV loops).",
+    label = "tabmcrPlot_TT")
 @
 
 <<ScoresPlot, fig = TRUE, term = FALSE>>=
-scoresPlot(nlcvTT, tech = 'svm', nfeat = 2)
+scoresPlot(nlcvTT, tech = "svm", nfeat = 2)
 @
 
 
 \subsection{Penalized regression}
 LASSO (Tibshirani 2002) or elastic net (Zou 2005) apply multivariate and dependent feature selection.
 
-<<lasso, fig=TRUE, term = FALSE>>=
+<<lasso, fig=TRUE, term = FALSE, keep.source=TRUE>>=
 resultLasso <- lassoClass(object = bcrAblOrNeg, groups = "mol.biol")
 plot(resultLasso, label = TRUE,
 		main = "Lasso coefficients in relation to degree of penalization.")
 featResultLasso <- topTable(resultLasso, n = 15)
 @
 
-<<tabLasso, results = tex, echo = FALSE, term = FALSE>>=
-lassoTable <- xtable(featResultLasso, label ="tablassoClass",
-		caption="Features selected by Lasso, ranked from largest to smallest penalized coefficient.")
+<<tabLasso, results = tex, echo = FALSE, term = FALSE, keep.source=TRUE>>=
+lassoTable <- xtable(featResultLasso, label = "tablassoClass",
+		caption = "Features selected by Lasso, ranked from largest to smallest penalized coefficient.")
 print(lassoTable, include.rownames = FALSE)
 @
 
-<<plotTop2_3genesLasso, fig = FALSE, echo = FALSE, term = FALSE>>=
-par(mfrow=c(1,2))
+<<plotTop2_3genesLasso, fig = FALSE, echo = FALSE, term = FALSE, keep.source=TRUE>>=
+op <- par(mfrow=c(1,2))
   plotCombination2genes(geneSymbol1 = featResultLasso$topList[1, 1], 
-		  geneSymbol2 = featResultLasso$topList[2, 1],
+		geneSymbol2 = featResultLasso$topList[2, 1],
     object = bcrAblOrNeg, groups = "mol.biol",
-    main = "Combination of\nfirst and second gene", addLegend = TRUE, legendPos = 'topright')
+    main = "Combination of\nfirst and second gene", addLegend = TRUE, 
+    legendPos = "topright")
 
   plotCombination2genes(geneSymbol1 = featResultLasso$topList[1, 1], 
 		  geneSymbol2 = featResultLasso$topList[3, 1],
     object = bcrAblOrNeg, groups = "mol.biol",
     main = "Combination of\nfirst and third gene", addLegend = FALSE)
-par(mfrow=c(1,1))
+par(op)
 @
 
 \afterpage{\clearpage}
@@ -314,14 +335,14 @@ indicates the 50\% threshold, and samples that have a higher probability than 50
 with blue dots. Apparently, using the expression of the gene \texttt{ABL1}, quite a lot of samples
 predicted to with a high probability to be NEG, are indeed known to be NEG.  
  
-<<LogisticRegressionPlot, fig=TRUE, term = FALSE>>=
+<<LogisticRegressionPlot, fig=TRUE, term = FALSE, keep.source=TRUE>>=
 probabilitiesPlot(proportions = logRegRes$fit, classVar = logRegRes$y,
-		sampleNames = rownames(logRegRes), main = 'Probability of being NEG')
+		sampleNames = rownames(logRegRes), main = "Probability of being NEG")
 @
 
-<<LogisticRegressionPlotBars, fig=TRUE, term = FALSE>>=
+<<LogisticRegressionPlotBars, fig=TRUE, term = FALSE, keep.source=TRUE>>=
 probabilitiesPlot(proportions = logRegRes$fit, classVar = logRegRes$y, barPlot= TRUE,
-		sampleNames = rownames(logRegRes), main = 'Probability of being NEG')
+		sampleNames = rownames(logRegRes), main = "Probability of being NEG")
 @
 
 \subsection{Receiver operating curve}
@@ -341,24 +362,24 @@ ROCres <- ROCcurve(geneSymbol = "ABL1", object = bcrAblOrNeg, groups = "mol.biol
 Some potentially interesting genes can be visualized using \texttt{plot1gene}. 
 Here the most significant gene is plotted.
 
-<<plotProfile, fig = TRUE, term = FALSE>>=
+<<plotProfile, fig = TRUE, term = FALSE, keep.source=TRUE>>=
 plot1gene(probesetId = rownames(tTestResult)[1],
-		object = selBcrAblOrNeg, groups = "mol.biol", legendPos='topright')
+		object = selBcrAblOrNeg, groups = "mol.biol", legendPos = "topright")
 @
 
 There are some variations possible on the default \texttt{plot1gene} function.
  For example, the labels of x-axis can be changed or omitted. 
 
-<<otherSampleIDsInPlot1gene, fig = TRUE, term = FALSE>>=
+<<otherSampleIDsInPlot1gene, fig = TRUE, term = FALSE, keep.source=TRUE>>=
 plot1gene(probesetId = rownames(tTestResult)[1], object = selBcrAblOrNeg,
-		groups = 'mol.biol', sampleIDs = 'mol.biol', legendPos='topright')
+		groups = "mol.biol", sampleIDs = "mol.biol", legendPos = "topright")
 @
 
 Another option is to color the samples by another categorical variable than used for ordering.
 
-<<plot1gene2vars, fig = TRUE, term = FALSE>>=
+<<plot1gene2vars, fig = TRUE, term = FALSE, keep.source=TRUE>>=
 plot1gene(probesetId = rownames(tTestResult)[1], object = selBcrAblOrNeg,
-		groups = 'mol.biol', colgroups = 'BT', legendPos='topright')
+		groups = "mol.biol", colgroups = 'BT', legendPos = "topright")
 @
 
 The above graphs plot one sample per tickmark in the x-axis. This is very useful to explore the data as one can
@@ -367,18 +388,19 @@ The above graphs plot one sample per tickmark in the x-axis. This is very useful
 It is possible to pass arguments to the boxplot function to custopmize the graph. For example
  the \texttt{boxwex} argument allows to reduce the width of the boxes in the plot.
  
-<<boxPlot, fig = TRUE, term = FALSE>>=
+<<boxPlot, fig = TRUE, term = FALSE, keep.source=TRUE>>=
 boxPlot(probesetId = rownames(tTestResult)[1], object = selBcrAblOrNeg, boxwex = 0.3,
-		groups = 'mol.biol', colgroups = 'BT', legendPos='topright')
+		groups = "mol.biol", colgroups = "BT", legendPos = "topright")
 @
 
 \subsection{Plot the expression levels of two genes versus each other}
 
-<<plotTop2_3genesLasso, fig = TRUE, term = FALSE>>=
+<<plotTop2_3genesLasso, fig = TRUE, term = FALSE, keep.source=TRUE>>=
 plotCombination2genes(geneSymbol1 = featResultLasso$topList[1, 1],
 		geneSymbol2 = featResultLasso$topList[2, 1],
 		object = bcrAblOrNeg, groups = "mol.biol",
-		main = "Combination of\nfirst and second gene", addLegend = TRUE, legendPos = 'topright')
+		main = "Combination of\nfirst and second gene", addLegend = TRUE, 
+    legendPos = "topright")
 @
 
 \subsection{Plot expression line profiles of multiple genes/probesets across samples}
@@ -389,7 +411,7 @@ As an example, here three probesets that measure the gene \texttt{LCK}, found to
   differentially expressed between B- and T-cells. Apparently, one probeset does not measure
   the gene appropriately.
   
-<<profilesPlot, fig = TRUE, term = FALSE>>=
+<<profilesPlot, fig = TRUE, term = FALSE, keep.source=TRUE>>=
 myGeneSymbol <- "LCK"
 probesetPos <- which(myGeneSymbol == featureData(ALL)$SYMBOL)
 myProbesetIds <- featureNames(ALL)[probesetPos]
@@ -405,12 +427,12 @@ It may be of interest to look at correlations between samples.
 As each dot represents a gene, there are typically many dots. It is therefore wise to color the
 dots in a density dependent way.
  
-<<plotComb2Samples, fig = FALSE, term = FALSE>>=
+<<plotComb2Samples, fig = FALSE, term = FALSE, keep.source=TRUE>>=
 plotComb2Samples(ALL, "11002", "01003",
 		xlab = "a T-cell", ylab = "another T-cell")
 @
 
-<<plotComb2Samples, fig = FALSE, term = FALSE, echo=FALSE>>=
+<<plotComb2Samples, fig = FALSE, term = FALSE, echo=FALSE, keep.source=TRUE>>=
 require(Cairo)
 CairoPNG(filename="plotComb2Samples.png",width=500,height=500)
 plotComb2Samples(ALL, "11002", "01003",
@@ -432,7 +454,7 @@ If there are outlying genes, one can label them by their gene symbol by specifyi
 the expression intervals (X- or Y- axis or both) that contain the genes to be highlighted
 using \texttt{trsholdX} and \texttt{trsholdY}.
  
-<<plotComb2SamplesWithAnnotation, fig = FALSE, term = FALSE>>=
+<<plotComb2SamplesWithAnnotation, fig = FALSE, term = FALSE, keep.source=TRUE>>=
 plotComb2Samples(ALL, "84004", "01003",
 		trsholdX = c(10,12), trsholdY = c(4,6),
 		xlab = "a B-cell", ylab = "a T-cell")
@@ -466,8 +488,8 @@ plotCombMultSamples(exprs(ALL)[,c("84004", "11002", "01003")])
 @
 
 <<plotCombMultipleSamples, fig = FALSE, term = FALSE, echo=FALSE>>=
-CairoPNG(filename="plotCombMultipleSamples.png",width=500,height=500)
-plotCombMultSamples(exprs(ALL)[,c("84004", "11002", "01003")])
+CairoPNG(filename="plotCombMultipleSamples.png", width=500, height=500)
+plotCombMultSamples(exprs(ALL)[, c("84004", "11002", "01003")])
 dev.off()
 @
 \begin{figure}[h]
@@ -487,7 +509,7 @@ When analyzing treatments that are primarily interesting relative to a control t
 it may be of value to look at the log ratios of several treatments (in columns)
 for a selected list of genes (in rows).
  
-<<GeneLRlist, term = FALSE>>=
+<<GeneLRlist, term = FALSE, keep.source=TRUE>>=
 ALL$BTtype <- as.factor(substr(ALL$BT,0,1))
 ALL2 <- ALL[,ALL$BT != 'T1']  # omit subtype T1 as it only contains one sample
 ALL2$BTtype <- as.factor(substr(ALL2$BT,0,1)) # create a vector with only T and B
@@ -497,12 +519,12 @@ tTestResult <- tTest(ALL, "BTtype", probe2gene = FALSE)
 topGenes <- rownames(tTestResult)[1:20]
 
 # plot the log ratios versus subtype B of the top genes 
-LogRatioALL <- computeLogRatio(ALL2, reference=list(var='BT',level='B'))
-a <- plotLogRatio(e=LogRatioALL[topGenes,],openFile = FALSE, tooltipvalues = FALSE,
-		device = 'pdf', filename = 'GeneLRlist',
-		colorsColumnsBy = c('BTtype'), main = 'Top 20 genes most differentially between T- and B-cells',
-		orderBy = list(rows = "hclust"),
-		probe2gene = TRUE)
+LogRatioALL <- computeLogRatio(ALL2, reference = list(var="BT", level="B"))
+a <- plotLogRatio(e = LogRatioALL[topGenes,], openFile = FALSE, tooltipvalues = FALSE,
+		device = "pdf", filename = "GeneLRlist",
+		colorsColumnsBy = "BTtype", 
+    main = 'Top 20 genes most differentially between T- and B-cells',
+		orderBy = list(rows = "hclust"), probe2gene = TRUE)
 @
 
 \begin{figure}[h]
@@ -517,7 +539,7 @@ a <- plotLogRatio(e=LogRatioALL[topGenes,],openFile = FALSE, tooltipvalues = FAL
 The following example demonstrates how to display log ratios for four compounds
 for which gene expression was measured on four timepoints.
 
-<<plotLogRatioComplex>>=
+<<plotLogRatioComplex, keep.source=TRUE>>=
   load(system.file("examples", "esetExampleTimeCourse.rda", package = "a4"))
   logRatioEset <- computeLogRatio(esetExampleTimeCourse, within = "hours",
     reference = list(var = "compound", level = "DMSO"))
@@ -536,7 +558,8 @@ for which gene expression was measured on four timepoints.
       gene.fontsize = 8,
       orderBy = list(rows = "hclust", cols = NULL), colorsColumnsBy = c('compound'),
       within = "hours", shortvarnames = shortvarnames, exp.width = 1,
-      main = paste("Differential Expression (trend at early time points) in", cl, "upon treatment with", compound),
+      main = paste("Differential Expression (trend at early time points) in", 
+          cl, "upon treatment with", compound),
       reference = list(var = "compound", level = "DMSO"), device = 'pdf')
 @
 
@@ -555,10 +578,20 @@ for which gene expression was measured on four timepoints.
 
 \subsection{Minus log p}
  
-<<MLP>>=
+The MLP method is one method of pathway analysis that is 
+commonly used by the a4 suite user base. Although the
+method is explained in detail in the MLP package vignette
+we briefly walk throught the analysis steps using the
+same example dataset used in the preceding parts of the
+analysis. In order to detect whether certain gene sets
+are enriched in genes with low p values, we obtain the
+vector of p values for the genes and the corresponding
+relevant gene sets:
+ 
+<<MLP, keep.source=TRUE>>=
 require(MLP)
 # create groups
-labels <- as.factor(ifelse(regexpr("^B", as.character(pData(ALL)$BT))==1,'B','T'))
+labels <- as.factor(ifelse(regexpr("^B", as.character(pData(ALL)$BT))==1, "B", "T"))
 pData(ALL)$BT2 <- labels
 
 # generate p-values
@@ -571,7 +604,7 @@ names(pValues) <- pValueNames
 pValues <- pValues[!is.na(pValueNames)]
 @
 
-<<geneSet>>=
+<<geneSet, keep.source=TRUE>>=
 geneSet <- getGeneSets(species = "Human", 
     geneSetSource = "GOBP", 
     entrezIdentifiers = names(pValues)
@@ -579,7 +612,8 @@ geneSet <- getGeneSets(species = "Human",
 tail(geneSet, 3)
 @
 
-<<MLP>>=
+Next, we run the MLP analysis:
+<<MLP, keep.source=TRUE>>=
 mlpOut <- MLP(
     geneSet = geneSet, 
     geneStatistic = pValues, 
@@ -592,7 +626,10 @@ mlpOut <- MLP(
     df = 9)   
 @
 
-<<GOgraph, fig=FALSE>>=
+The results can be visualized in many ways, but for Gene Ontology based
+gene set definitions, the following graph may be useful:
+
+<<GOgraph, fig=FALSE, results=hide>>=
   pdf(file = "GOgraph.pdf")
     plot(mlpOut, type = "GOgraph", nRow = 25)
 	dev.off()
@@ -602,14 +639,9 @@ mlpOut <- MLP(
 \includegraphics{GOgraph}
 \end{figure}
 
-\subsection{Gene set enrichment analysis}
- 
-<<GSEA, term = FALSE>>=
-
-@
 \section{Software used}
 
-<<sessionInfo, echo=FALSE, results = tex>>=
+<<sessionInfo, echo=FALSE, results=tex>>=
 toLatex(sessionInfo())
 @
 
