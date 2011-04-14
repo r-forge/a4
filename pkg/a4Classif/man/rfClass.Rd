@@ -30,5 +30,13 @@ rfClass(object, groups, probe2gene = TRUE)
   topTable and plot methods are available for 'rfClass' objects.
 }
 \seealso{\code{\link[randomForest]{randomForest}}}
-% TODO add examples section
+\examples{
+if (require(ALL)){
+  data(ALL, package = "ALL")
+  ALL <- addGeneInfo(ALL)
+  ALL$BTtype <- as.factor(substr(ALL$BT,0,1))
+
+  resultLasso <- rfClass(object = ALL, groups = "BTtype")
+}
+}
 \keyword{models}

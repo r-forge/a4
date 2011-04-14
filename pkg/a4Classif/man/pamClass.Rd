@@ -30,5 +30,13 @@ pamClass(object, groups, probe2gene = TRUE)
 }
 \author{Willem Talloen}
 \seealso{\code{\link[pamr]{pamr.train}}}
-% TODO add examples section
+\examples{
+if (require(ALL)){
+  data(ALL, package = "ALL")
+  ALL <- addGeneInfo(ALL)
+  ALL$BTtype <- as.factor(substr(ALL$BT,0,1))
+
+  resultPam <- pamClass(object = ALL, groups = "BTtype")
+}
+}
 \keyword{models}
