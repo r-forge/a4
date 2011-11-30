@@ -11,14 +11,14 @@ $themeroot='http://r-forge.r-project.org/themes/rforge/';
 echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
 <!DOCTYPE html
-	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en   ">
 
   <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title><?php echo $group_name; ?></title>
-	<link href="<?php echo $themeroot; ?>styles/estilo1.css" rel="stylesheet" type="text/css" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title><?php echo $group_name; ?></title>
+  <link href="<?php echo $themeroot; ?>styles/estilo1.css" rel="stylesheet" type="text/css" />
   </head>
 
 <body>
@@ -36,16 +36,16 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <?php if ($handle=fopen('http://'.$domain.'/export/projtitl.php?group_name='.$group_name,'r')){
 $contents = '';
 while (!feof($handle)) {
-	$contents .= fread($handle, 8192);
+  $contents .= fread($handle, 8192);
 }
 fclose($handle);
 echo $contents; } ?>
 
 <!-- end of project description -->
 
-<p> No content added. </p>
+<p> <strong>All current development has moved to <a href="http://www.bioconductor.org/packages/release/bioc/html/a4.html">BioConductor</a></strong></p>
 
-<p> The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
+<p> The project summary page can be found <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
 
 </body>
 </html>
